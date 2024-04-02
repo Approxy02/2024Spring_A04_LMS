@@ -8,12 +8,15 @@ public class MainProgram {
     private Process2 process2;
     private Process3 process3;
     private Process4 process4;
+    private ProcessForTest processForTest;
     private String todayDate;
     private String process_input;
     Scanner scanner = new Scanner(System.in);
 
 
     public MainProgram() {
+
+         processForTest = new ProcessForTest();
 
         input_Date();
 
