@@ -9,7 +9,7 @@ public class MainProgram {
     private Process3 process3;
     private Process4 process4;
     private ProcessForTest processForTest; //테스트용
-    private String todayDate; //프로그램 처음 시박시 입력받는 오늘 날짜
+    private String todayDate; //프로그램 처음 시작시 입력받는 오늘 날짜
     private String process_input; //메뉴 입력값
     Scanner scanner = new Scanner(System.in);
 
