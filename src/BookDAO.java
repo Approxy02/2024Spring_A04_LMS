@@ -12,7 +12,7 @@ public class BookDAO {
     private File booksFolder; // src/dataFiles/books
 
     public BookDAO() {
-        checkDataValidation();
+        checkDataValidation(); //프로그램 시작시 데이터 유효성 검사
     }
 
     private void checkDataValidation() {
@@ -48,7 +48,7 @@ public class BookDAO {
             System.exit(1);
         }
 
-        //getDataFromFiles();
+        getDataFromFiles();
     }
 
 

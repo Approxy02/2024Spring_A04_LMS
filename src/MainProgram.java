@@ -8,15 +8,15 @@ public class MainProgram {
     private Process2 process2;
     private Process3 process3;
     private Process4 process4;
-    private ProcessForTest processForTest;
-    private String todayDate;
-    private String process_input;
+    private ProcessForTest processForTest; //테스트용
+    private String todayDate; //프로그램 처음 시박시 입력받는 오늘 날짜
+    private String process_input; //메뉴 입력값
     Scanner scanner = new Scanner(System.in);
 
 
     public MainProgram() {
 
-         processForTest = new ProcessForTest();
+        processForTest = new ProcessForTest();
 
         input_Date();
 
@@ -76,9 +76,9 @@ public class MainProgram {
 //          System.out.println("input: " + input);
             if (input != null && !input.trim().isEmpty() && input.length() <= 15) {
                 input = input.trim();
-                String validationCheckInput = input.replaceAll("\\s+", " ");
-//			System.out.println("validationCheckInput: " + validationCheckInput);
-                if (Is_valid_date(validationCheckInput)) {
+                String stringForCheckDateInput = input.replaceAll("\\s+", " ");
+//			System.out.println("stringForCheckDateInput: " + stringForCheckDateInput);
+                if (Is_valid_date(stringForCheckDateInput)) {
                     break;
                 } else {
                     System.out.println("입력 가능한 문자열이 아닙니다.");
@@ -91,7 +91,7 @@ public class MainProgram {
         }
     }
 
-    public boolean Is_valid_date(String e) {
+    private boolean Is_valid_date(String e) {
         try {
             String[] parts = e.split(" ");
             if (parts[0].length() != 4 || parts[1].length() > 2 || parts[2].length() > 2)
@@ -113,7 +113,8 @@ public class MainProgram {
                         this.todayDate = year + " " + month + " 0" + day;
                 } else
                     this.todayDate = year + " " + month + " " + day;
-                System.out.println("today : " + todayDate);
+                //for debug
+//                System.out.println("today : " + todayDate);
                 return true;
             } else {
                 return false;
@@ -124,7 +125,7 @@ public class MainProgram {
 
     }
 
-    public boolean Is_valid_date2(int year, int month, int day) {
+    private boolean Is_valid_date2(int year, int month, int day) {
         try {
             //System.out.println("Is_valid_date2 called");
             // 31일까지 있는 달을 ArrayList로 초기화합니다.
@@ -173,7 +174,7 @@ public class MainProgram {
         }
     }
 
-    public boolean isValid_MenuInput(String e) {
+    private boolean isValid_MenuInput(String e) {
         if (e.length() != 1) {
             e = e.trim();
             if (e.length() != 1)

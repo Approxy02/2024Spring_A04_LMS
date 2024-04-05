@@ -1,3 +1,5 @@
+//각 도서의 정보를 가지고 있는 객체
+
 import java.util.ArrayList;
 
 public class BookVO {
@@ -6,8 +8,8 @@ public class BookVO {
     private String addedDate;
     private int index;
     private String location;
-    private BookRecord currentRecord;
-    private ArrayList<BookRecord> bookRecords;
+    private BookRecord currentRecord; //현재 대여정보 -> null이면 대여중이 아님
+    private ArrayList<BookRecord> bookRecords; //이전 대여정보들 -> null이면 대여기록 없음
 
     public BookVO(String title, String author, String addedDate, int index, String location) {
         this.title = title;
