@@ -24,6 +24,13 @@ public class ProcessForTest {
         for(BookVO book : bookList){
             book.printBookInfo();
         }
+        bookDAO.writeDataToFiles(bookList);
+        bookDAO.getDataFromFiles();
+        //for debug
+        System.out.println("------------------------------------------------------------");
+        for(BookVO book : bookList){
+            book.printBookInfo();
+        }
     }
 
 

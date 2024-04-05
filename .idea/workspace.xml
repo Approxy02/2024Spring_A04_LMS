@@ -7,15 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="코드 추출">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="각 코드에 주석, 설명 추가">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(1).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(2).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/전기프(1).txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BookRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BookVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessForTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessForTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/어린왕자(1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/어린왕자(1).txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +116,9 @@
       <workItem from="1712197027478" duration="304000" />
       <workItem from="1712230346146" duration="252000" />
       <workItem from="1712288710033" duration="360000" />
-      <workItem from="1712322234366" duration="820000" />
+      <workItem from="1712322234366" duration="969000" />
+      <workItem from="1712323207174" duration="39000" />
+      <workItem from="1712330700930" duration="1079000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -157,7 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712289033798</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="각 코드에 주석, 설명 추가">
+      <option name="closed" value="true" />
+      <created>1712323158422</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712323158422</updated>
+    </task>
+    <task id="LOCAL-00007" summary="각 코드에 주석, 설명 추가">
+      <option name="closed" value="true" />
+      <created>1712323226405</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712323226405</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +199,8 @@
     <MESSAGE value="books 폴더 생성" />
     <MESSAGE value="txt파일에서 읽어오기 구현" />
     <MESSAGE value="코드 추출" />
-    <option name="LAST_COMMIT_MESSAGE" value="코드 추출" />
+    <MESSAGE value="각 코드에 주석, 설명 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="각 코드에 주석, 설명 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

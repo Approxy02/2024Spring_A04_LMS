@@ -31,15 +31,15 @@ public class BookVO {
         this.bookRecords = null;
     }
 
-    public BookVO(String title, String author, String addedDate, int index, String location, BookRecord currentRecord, ArrayList<BookRecord> bookRecords) {
-        this.title = title;
-        this.author = author;
-        this.addedDate = addedDate;
-        this.index = index;
-        this.location = location;
-        this.currentRecord = currentRecord;
-        this.bookRecords = bookRecords;
-    }
+//    public BookVO(String title, String author, String addedDate, int index, String location, BookRecord currentRecord, ArrayList<BookRecord> bookRecords) {
+//        this.title = title;
+//        this.author = author;
+//        this.addedDate = addedDate;
+//        this.index = index;
+//        this.location = location;
+//        this.currentRecord = currentRecord;
+//        this.bookRecords = bookRecords;
+//    }
 
     public String getTitle() {
         return title;
@@ -124,6 +124,16 @@ public class BookVO {
                 System.out.println("대여자 : " + bookRecord.getStudentNum());
             }
         System.out.println("------------------------------------------------------------");
+    }
+
+    public String toBookFileString(){
+        String str = "";
+        if(this.getCurrentRecord() == null){
+            str += this.getTitle() + "/"+this.getAuthor()+"/"+this.getAddedDate()+"/"+this.getIndex()+"/"+this.getLocation();
+        }else{ //not null
+            str += this.getTitle() + "/"+this.getAuthor()+"/"+this.getAddedDate()+"/"+this.getIndex()+"/"+this.getLocation()+'/'+this.getCurrentRecord().getStartDate()+" ~ "+this.getCurrentRecord().getEndDate()+"/"+this.getCurrentRecord().getStudentNum();
+        }
+        return str;
     }
 
 }

@@ -16,7 +16,8 @@ public class MainProgram {
 
     public MainProgram() {
 
-        processForTest = new ProcessForTest();
+        //for debug
+//        processForTest = new ProcessForTest();
 
         input_Date();
 
@@ -70,6 +71,7 @@ public class MainProgram {
     private void input_Date() {
 
         while (true) {
+            System.out.println();
             System.out.print("\"년+월+일\"을 입력하세요 > ");
             String input = scanner.nextLine();
             System.out.println("------------------------------------------------------------");
