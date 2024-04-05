@@ -95,11 +95,10 @@ public class BookDAO {
 //                    System.out.println(line);
                     if (count == 1) {
                         readAndCheckFirstLineOfBookFile(line, book, filename, count);
-                        count++;
                     } else {
                         readRecordFromBookFile(line, book, filename, count);
-                        count++;
                     }
+                    count++;
 
                 }
 
@@ -193,7 +192,7 @@ public class BookDAO {
     }
 
     public void writeDataToFiles(ArrayList<BookVO> bookList) {
-
+        
     }
 
 }
