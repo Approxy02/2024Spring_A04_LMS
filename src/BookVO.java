@@ -136,4 +136,14 @@ public class BookVO {
         return str;
     }
 
+    //toBookFileString()에서 학번만 제외하고 출력
+    public String toBookFileStringWithoutSno(){
+        String str = "";
+        if(this.getCurrentRecord() == null){
+            str += this.getTitle() + "/"+this.getAuthor()+"/"+this.getAddedDate()+"/"+this.getIndex()+"/"+this.getLocation();
+        }else{ //not null
+            str += this.getTitle() + "/"+this.getAuthor()+"/"+this.getAddedDate()+"/"+this.getIndex()+"/"+this.getLocation()+'/'+this.getCurrentRecord().getStartDate()+" ~ "+this.getCurrentRecord().getEndDate();
+        }
+        return str;
+    }
 }
