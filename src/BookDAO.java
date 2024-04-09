@@ -77,7 +77,7 @@ public class BookDAO {
         //각 도서들의 이전 대여 기록 가져오기
 
         for (BookVO book : bookList) {
-            String filename = book.getTitle() + "(" + book.getIndex() + ").txt";
+            String filename = book.getTitle() + "(" + book.getAuthor() + "_"+ book.getIndex() + ").txt";
 
             //for debug
 //            System.out.println(filename);
@@ -242,7 +242,7 @@ public class BookDAO {
 
 
         for (BookVO book : bookList) {
-            String filename = book.getTitle() + "(" + book.getIndex() + ").txt";
+            String filename = book.getTitle() + "(" + book.getAuthor() + "_" + book.getIndex() + ").txt";
 
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(new File(booksFolder, filename)));

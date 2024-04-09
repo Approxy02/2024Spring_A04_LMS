@@ -176,7 +176,7 @@ public class Process4 {
             try{
                 if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
                     matchBooks.add(book);
-            }catch(Exception e){
+            }catch(Exception ignored){
 
             }
         }
