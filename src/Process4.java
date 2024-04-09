@@ -74,9 +74,11 @@ public class Process4 {
     private boolean searchBorrowBookPrompt(String paramInput){
         String regex = ".*" + paramInput + ".*";
 
-        System.out.println("bookList");
-        for(BookVO book : bookList)
-            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
+//        System.out.println("bookList");
+//        for(BookVO book : bookList)
+//            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
 
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
 
@@ -89,10 +91,11 @@ public class Process4 {
         if(matchBooks.isEmpty())    //탐색결과 없음
             return false;
 
-
-        System.out.println("matchBook");
-        for(BookVO book : matchBooks)
-            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
+//        System.out.println("matchBook");
+//        for(BookVO book : matchBooks)
+//            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
         System.out.println("--------------------------------");
 
         System.out.println("  제목 / 저자 / 등록 날짜  / 인덱스 / 위치 / 대여기간");
@@ -159,13 +162,17 @@ public class Process4 {
     }
 
     private void selectReturnBook(int sno) {
-        System.out.println("in selected Book");
-        System.out.println(bookList.size());
+//===============================================ForTesting===========================
+//        System.out.println("in selected Book");
+//        System.out.println(bookList.size());
+//===============================================ForTesting===========================
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
 
         for(BookVO book : bookList){
+//===============================================ForTesting===========================
 //            System.out.println("in selected Book");
 //            System.out.println(book.getCurrentRecord().getStudentNum());
+//===============================================ForTesting===========================
             try{
                 if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
                     matchBooks.add(book);
@@ -220,16 +227,27 @@ public class Process4 {
     //2024 02 01
     private void processForBorrow(int sno, BookVO selectedBook) {
         //7일후 계산하기-------------------------------------------------------------------
+//===============================================ForTesting===========================
 //        System.out.println("startDate ===================================");
 //        System.out.println(todayDate);
+//===============================================ForTesting===========================
+
         String[] splited = todayDate.split(" ");
+
+//===============================================ForTesting===========================
 //        for(String s : splited) {
 //            System.out.println(s);
 //            System.out.println(Integer.parseInt(s));
 //        }
+//===============================================ForTesting===========================
+
         LocalDate startDate = LocalDate.of(Integer.parseInt(splited[0]), Integer.parseInt(splited[1]), Integer.parseInt(splited[2]));
+
+//===============================================ForTesting===========================
 //        System.out.println("startDate ===================================");
 //        System.out.println(startDate);
+//===============================================ForTesting===========================
+
         LocalDate endLocalDate = startDate.plusDays(7);
         String endDate = endLocalDate.getYear() + " " +  endLocalDate.getMonthValue() + " " + endLocalDate.getDayOfMonth();
         BookRecord record = new BookRecord(todayDate, endDate, new Integer(sno).toString());
