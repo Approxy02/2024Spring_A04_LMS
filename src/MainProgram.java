@@ -11,8 +11,6 @@ public class MainProgram {
     private ProcessForTest processForTest; //테스트용
     private String todayDate; //프로그램 처음 시작시 입력받는 오늘 날짜
     private String process_input; //메뉴 입력값
-    Scanner scanner = new Scanner(System.in);
-
 
     public MainProgram() {
 
@@ -34,6 +32,7 @@ public class MainProgram {
 
             try {
                 process_input = sc.nextLine();
+//                System.out.println(process_input);
                 if (Integer.parseInt(process_input) != 5)
                     System.out.println("------------------------------------------------------------");
                 if (isValid_MenuInput(process_input)) {
@@ -46,8 +45,7 @@ public class MainProgram {
                         process3 = new Process3(todayDate);
                     else if (menu == 4)
                         process4 = new Process4(todayDate);
-
-                    if (menu == 5) {
+                    else if (menu == 5) {
                         System.out.println("> A04 Library Management System을 종료합니다");
                         break;
                     } else {
@@ -69,6 +67,8 @@ public class MainProgram {
     }
 
     private void input_Date() {
+
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println();
@@ -191,7 +191,7 @@ public class MainProgram {
             }
         }
         int analysis = Integer.parseInt(e);
-        return analysis >= 1 && analysis <= 6;
+        return analysis >= 1 && analysis <= 5;
     }
 
 }
