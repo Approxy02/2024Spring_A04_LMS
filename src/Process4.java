@@ -41,7 +41,7 @@ public class Process4 {
                     returnBookPrompt();
                     break;
                 case 3:
-
+                    printRecord();
                     break;
                 case 4:
                     goPrevious = false; //while문 loop 조건 false로 변경
@@ -279,5 +279,36 @@ public class Process4 {
         }
     }
 
-
+    private void printRecord() {
+//        BookDAO bookDAO = new BookDAO(); // 임시 bookDAO - 공동으로 사용하는 bookDAO가 있으면 그것을 가져와야 함 => class bookDAO로 변경
+        ArrayList<BookVO> Books = bookDAO.getDataFromFiles();
+        if (Books.isEmpty()) {
+            System.out.println("검색 결과가 존재하지 않습니다.");
+        } else {
+            int bookNum = 1;
+            System.out.println("  제목/ 저자 / 등록날짜 / 인덱스 / 위치 / 대여기간");
+            for (BookVO book : Books) {
+                if(book.getCurrentRecord() == null) {
+                    System.out.println((bookNum++) + ")" + book.toBookFileString()  + "/대여가능");
+                }else{
+                    System.out.println((bookNum++) + ")" + book.toBookFileStringWithoutSno());
+                }
+                if(book.getBookRecords() == null) {
+                    System.out.println("이전 대여 기록 없음");
+                }
+                else {
+                    System.out.println("이전 대여 기록");
+                    for (BookRecord records : book.getBookRecords()) {
+                        System.out.println(records.getStartDate() + " ~ " + records.getEndDate());
+                    }
+                }
+            }
+        }
+        System.out.println("‘q’를 입력하여 뒤로가기");
+        System.out.println("------------------------------------------------------------");
+        System.out.print("> A04 LMS: borrrow books > ");
+        while(!scanner.nextLine().equals("q")){
+            System.out.println("q 외에 다른 입력은 허용되지 않습니다.");
+        }
+    }
 }
