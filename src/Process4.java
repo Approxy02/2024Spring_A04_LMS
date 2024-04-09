@@ -164,14 +164,20 @@ public class Process4 {
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
 
         for(BookVO book : bookList){
-            System.out.println("in selected Book");
-            System.out.println(book.getCurrentRecord().getStudentNum());
-            if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
-                matchBooks.add(book);
+//            System.out.println("in selected Book");
+//            System.out.println(book.getCurrentRecord().getStudentNum());
+            try{
+                if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
+                    matchBooks.add(book);
+            }catch(Exception e){
+
+            }
         }
 
-        if(matchBooks.isEmpty())    //탐색결과 없음 ====================================================보고서 수정 필
+        if(matchBooks.isEmpty()) {    //탐색결과 없음 ====================================================보고서 수정 필
             System.out.println("대여한 책이 없습니다.");
+            return;
+        }
         System.out.println("in selected Book");
 
         while(true) {
@@ -200,13 +206,15 @@ public class Process4 {
 
     private void processForReturn(BookVO selected) {
         BookRecord curRecord = selected.getCurrentRecord();
+        selected.setCurrentRecord(null);    //curRecord null로 하여 반납처리
 
         curRecord.setEndDate(todayDate);
 
         if(selected.getBookRecords() == null){
             selected.setBookRecords(new ArrayList<>());
         }
-        selected.getBookRecords().add(curRecord);
+        selected.getBookRecords().add(curRecord);   //대출 기록 반납일자를 오늘로 하여 기록 추가
+        bookDAO.writeDataToFiles(bookList);
     }
 
     //2024 02 01
@@ -231,7 +239,7 @@ public class Process4 {
     }
 
     private boolean regexForUserInfo(String input){
-        String regexForSno = "^[0-9]{9}$";
+        String regexForSno = "^20(([01][0-9])|(2[0-4]))[0-9]{5}$";  //2000 ~ 2024 까지의 년도만 허용
         return input.matches(regexForSno);
     }
 
