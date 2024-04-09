@@ -41,7 +41,7 @@ public class Process4 {
                     returnBookPrompt();
                     break;
                 case 3:
-
+                    printRecord();
                     break;
                 case 4:
                     goPrevious = false; //while문 loop 조건 false로 변경
@@ -74,9 +74,11 @@ public class Process4 {
     private boolean searchBorrowBookPrompt(String paramInput){
         String regex = ".*" + paramInput + ".*";
 
-        System.out.println("bookList");
-        for(BookVO book : bookList)
-            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
+//        System.out.println("bookList");
+//        for(BookVO book : bookList)
+//            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
 
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
 
@@ -89,10 +91,11 @@ public class Process4 {
         if(matchBooks.isEmpty())    //탐색결과 없음
             return false;
 
-
-        System.out.println("matchBook");
-        for(BookVO book : matchBooks)
-            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
+//        System.out.println("matchBook");
+//        for(BookVO book : matchBooks)
+//            System.out.println(book.toBookFileStringWithoutSno());
+//===============================================ForTesting===========================
         System.out.println("--------------------------------");
 
         System.out.println("  제목 / 저자 / 등록 날짜  / 인덱스 / 위치 / 대여기간");
@@ -159,19 +162,29 @@ public class Process4 {
     }
 
     private void selectReturnBook(int sno) {
-        System.out.println("in selected Book");
-        System.out.println(bookList.size());
+//===============================================ForTesting===========================
+//        System.out.println("in selected Book");
+//        System.out.println(bookList.size());
+//===============================================ForTesting===========================
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
 
         for(BookVO book : bookList){
-            System.out.println("in selected Book");
-            System.out.println(book.getCurrentRecord().getStudentNum());
-            if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
-                matchBooks.add(book);
+//===============================================ForTesting===========================
+//            System.out.println("in selected Book");
+//            System.out.println(book.getCurrentRecord().getStudentNum());
+//===============================================ForTesting===========================
+            try{
+                if(Integer.parseInt(book.getCurrentRecord().getStudentNum()) == sno)
+                    matchBooks.add(book);
+            }catch(Exception e){
+
+            }
         }
 
-        if(matchBooks.isEmpty())    //탐색결과 없음 ====================================================보고서 수정 필
+        if(matchBooks.isEmpty()) {    //탐색결과 없음 ====================================================보고서 수정 필
             System.out.println("대여한 책이 없습니다.");
+            return;
+        }
         System.out.println("in selected Book");
 
         while(true) {
@@ -200,28 +213,41 @@ public class Process4 {
 
     private void processForReturn(BookVO selected) {
         BookRecord curRecord = selected.getCurrentRecord();
+        selected.setCurrentRecord(null);    //curRecord null로 하여 반납처리
 
         curRecord.setEndDate(todayDate);
 
         if(selected.getBookRecords() == null){
             selected.setBookRecords(new ArrayList<>());
         }
-        selected.getBookRecords().add(curRecord);
+        selected.getBookRecords().add(curRecord);   //대출 기록 반납일자를 오늘로 하여 기록 추가
+        bookDAO.writeDataToFiles(bookList);
     }
 
     //2024 02 01
     private void processForBorrow(int sno, BookVO selectedBook) {
         //7일후 계산하기-------------------------------------------------------------------
+//===============================================ForTesting===========================
 //        System.out.println("startDate ===================================");
 //        System.out.println(todayDate);
+//===============================================ForTesting===========================
+
         String[] splited = todayDate.split(" ");
+
+//===============================================ForTesting===========================
 //        for(String s : splited) {
 //            System.out.println(s);
 //            System.out.println(Integer.parseInt(s));
 //        }
+//===============================================ForTesting===========================
+
         LocalDate startDate = LocalDate.of(Integer.parseInt(splited[0]), Integer.parseInt(splited[1]), Integer.parseInt(splited[2]));
+
+//===============================================ForTesting===========================
 //        System.out.println("startDate ===================================");
 //        System.out.println(startDate);
+//===============================================ForTesting===========================
+
         LocalDate endLocalDate = startDate.plusDays(7);
         String endDate = endLocalDate.getYear() + " " +  endLocalDate.getMonthValue() + " " + endLocalDate.getDayOfMonth();
         BookRecord record = new BookRecord(todayDate, endDate, new Integer(sno).toString());
@@ -231,7 +257,7 @@ public class Process4 {
     }
 
     private boolean regexForUserInfo(String input){
-        String regexForSno = "^[0-9]{9}$";
+        String regexForSno = "^20(([01][0-9])|(2[0-4]))[0-9]{5}$";  //2000 ~ 2024 까지의 년도만 허용
         return input.matches(regexForSno);
     }
 
@@ -253,5 +279,36 @@ public class Process4 {
         }
     }
 
-
+    private void printRecord() {
+//        BookDAO bookDAO = new BookDAO(); // 임시 bookDAO - 공동으로 사용하는 bookDAO가 있으면 그것을 가져와야 함 => class bookDAO로 변경
+        ArrayList<BookVO> Books = bookDAO.getDataFromFiles();
+        if (Books.isEmpty()) {
+            System.out.println("검색 결과가 존재하지 않습니다.");
+        } else {
+            int bookNum = 1;
+            System.out.println("  제목/ 저자 / 등록날짜 / 인덱스 / 위치 / 대여기간");
+            for (BookVO book : Books) {
+                if(book.getCurrentRecord() == null) {
+                    System.out.println((bookNum++) + ")" + book.toBookFileString()  + "/대여가능");
+                }else{
+                    System.out.println((bookNum++) + ")" + book.toBookFileStringWithoutSno());
+                }
+                if(book.getBookRecords() == null) {
+                    System.out.println("이전 대여 기록 없음");
+                }
+                else {
+                    System.out.println("이전 대여 기록");
+                    for (BookRecord records : book.getBookRecords()) {
+                        System.out.println(records.getStartDate() + " ~ " + records.getEndDate());
+                    }
+                }
+            }
+        }
+        System.out.println("‘q’를 입력하여 뒤로가기");
+        System.out.println("------------------------------------------------------------");
+        System.out.print("> A04 LMS: borrrow books > ");
+        while(!scanner.nextLine().equals("q")){
+            System.out.println("q 외에 다른 입력은 허용되지 않습니다.");
+        }
+    }
 }
