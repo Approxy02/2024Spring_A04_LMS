@@ -17,7 +17,6 @@ public class Process3 {     //도서 관리 기능
     private BookDAO bookDAO = new BookDAO();
     private ArrayList<BookVO> books;
     private String process_input;
-    private boolean back = false;
 
     public Process3(String todayDate) {
         this.todayDate = todayDate;
@@ -28,12 +27,9 @@ public class Process3 {     //도서 관리 기능
 
     private void manageBook() {
         BookVO book;    //관리할 도서
-        do {
-            back = false;
-            searchByTitle();
-            book = chooseBook();
-            manageMenu(book);
-        } while(back);
+        searchByTitle();
+        book = chooseBook();
+        manageMenu(book);
     }
 
     private void manageMenu(BookVO book) {     //도서 선택 후 메뉴
@@ -73,8 +69,7 @@ public class Process3 {     //도서 관리 기능
                     }
 
                     if (menu == 5) {
-                        back = true;
-                        break;
+                        return;
                     } else {
                         System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요1");
                         System.out.println("------------------------------------------------------------");
