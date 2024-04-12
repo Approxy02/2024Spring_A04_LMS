@@ -35,7 +35,7 @@ public class MainProgram {
             System.out.print("> A04 LMS : menu > ");
             Scanner sc = new Scanner(System.in);
 
-//            try {
+            try {
                 process_input = sc.nextLine().trim();
 //                System.out.println(process_input);
                 if (Integer.parseInt(process_input) != 5)
@@ -61,12 +61,12 @@ public class MainProgram {
                     System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
                     System.out.println("------------------------------------------------------------");
                 }
-//            } catch (Exception e) {
+            } catch (Exception e) {
 //                System.out.println(e);
-//                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
-//                System.out.println("------------------------------------------------------------");
-//
-//            }
+                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
+                System.out.println("------------------------------------------------------------");
+
+            }
 
         }
 
