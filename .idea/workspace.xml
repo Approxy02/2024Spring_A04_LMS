@@ -7,7 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="최근접속일자 구현" />
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="최근접속일자 구현">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/밤(양갱_1).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/코스모스(칼 세이건_1).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/확률과 통계(이향원_1).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/어린왕자(쥐페리_1).txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/전기프(차리서_1).txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/코스모스(세이건_1).txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/코스모스(칼_1).txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +61,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Desktop/2024-1/전기프/A04_LMS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -74,7 +88,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-221dcadf" />
       </set>
     </attachedChunks>
   </component>
@@ -97,6 +111,8 @@
       <workItem from="1712668273819" duration="228000" />
       <workItem from="1712921544972" duration="1680000" />
       <workItem from="1712923230534" duration="1229000" />
+      <workItem from="1712936800023" duration="1612000" />
+      <workItem from="1712938421671" duration="82000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -187,6 +203,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Process4.java</url>
+          <line>10</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

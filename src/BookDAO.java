@@ -226,57 +226,82 @@ public class BookDAO {
 
     public void writeDataToFiles(ArrayList<BookVO> bookList, String todayDate) {
 
-        File[] existingFiles = booksFolder.listFiles();
-        if (existingFiles != null) {
-            for (File file : existingFiles) {
-                if (!file.isDirectory()) { // 파일이 디렉토리가 아닌 경우에만 삭제
-                    file.delete();
-                }
+        if(bookList.isEmpty()){
+            //빈 책 리스트를 받은 경우, booklist.txt에는 날짜만 기입한다.
+            //books하위파일들은 모두 삭제한다.
+            try{
+                BufferedWriter writer = new BufferedWriter(new FileWriter(bookListFile));
+                writer.write(todayDate);
+                writer.newLine();
+                writer.flush();
+                writer.close();
+            }catch(IOException e){
+                System.out.println("파일 쓰기 오류:"+e.getMessage());
+                System.exit(1);
             }
-        }
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(bookListFile));
-            writer.write(todayDate);
-            writer.newLine(); // 줄바꿈 추가
-
-            for (int i = 0; i < bookList.size(); i++) {
-                BookVO book = bookList.get(i);
-                if (book.getCurrentRecord() == null) {
-                    writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation());
-                } else {
-                    writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation()+'/'+book.getCurrentRecord().getStartDate()+" ~ "+book.getCurrentRecord().getEndDate()+"/"+book.getCurrentRecord().getStudentNum());
-                }
-                if (i != bookList.size() - 1) {
-                    writer.newLine(); // 마지막 요소가 아닌 경우에만 줄바꿈 추가
-                }
-            }
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            System.err.println("파일 쓰기 오류: " + e.getMessage());
-            System.exit(1);
-        }
-
-
-        for (BookVO book : bookList) {
-            String filename = book.getTitle() + "(" + book.getAuthor() + "_" + book.getIndex() + ").txt";
-
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(new File(booksFolder, filename)));
-                writer.write(book.toBookFileString()); // BookVO의 toBookFileString() 메서드를 이용하여 책 파일 정보를 문자열로 변환하여 쓴다.
-                if(book.getBookRecords() != null){
-                    for(BookRecord b : book.getBookRecords()){
-                        writer.newLine();
-                        writer.write(b.getStartDate()+" ~ "+b.getEndDate()+"/"+b.getStudentNum());
+            File[] existingFiles = booksFolder.listFiles();
+            if (existingFiles != null) {
+                for (File file : existingFiles) {
+                    if (!file.isDirectory()) { // 파일이 디렉토리가 아닌 경우에만 삭제
+                        file.delete();
                     }
                 }
+            }
+        }else{
+            //빈 리스트가 아닌경우 
+            File[] existingFiles = booksFolder.listFiles();
+            if (existingFiles != null) {
+                for (File file : existingFiles) {
+                    if (!file.isDirectory()) { // 파일이 디렉토리가 아닌 경우에만 삭제
+                        file.delete();
+                    }
+                }
+            }
+
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(bookListFile));
+                writer.write(todayDate);
+                writer.newLine(); // 줄바꿈 추가
+
+                for (int i = 0; i < bookList.size(); i++) {
+                    BookVO book = bookList.get(i);
+                    if (book.getCurrentRecord() == null) {
+                        writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation());
+                    } else {
+                        writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation()+'/'+book.getCurrentRecord().getStartDate()+" ~ "+book.getCurrentRecord().getEndDate()+"/"+book.getCurrentRecord().getStudentNum());
+                    }
+                    if (i != bookList.size() - 1) {
+                        writer.newLine(); // 마지막 요소가 아닌 경우에만 줄바꿈 추가
+                    }
+                }
+                writer.flush();
                 writer.close();
             } catch (IOException e) {
                 System.err.println("파일 쓰기 오류: " + e.getMessage());
                 System.exit(1);
             }
+
+
+            for (BookVO book : bookList) {
+                String filename = book.getTitle() + "(" + book.getAuthor() + "_" + book.getIndex() + ").txt";
+
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(new File(booksFolder, filename)));
+                    writer.write(book.toBookFileString()); // BookVO의 toBookFileString() 메서드를 이용하여 책 파일 정보를 문자열로 변환하여 쓴다.
+                    if(book.getBookRecords() != null){
+                        for(BookRecord b : book.getBookRecords()){
+                            writer.newLine();
+                            writer.write(b.getStartDate()+" ~ "+b.getEndDate()+"/"+b.getStudentNum());
+                        }
+                    }
+                    writer.close();
+                } catch (IOException e) {
+                    System.err.println("파일 쓰기 오류: " + e.getMessage());
+                    System.exit(1);
+                }
+            }
         }
-    }
+        }
 
 }
