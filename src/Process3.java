@@ -23,7 +23,7 @@ public class Process3 {     //도서 관리 기능
         this.todayDate = todayDate;
         booklist = bookDAO.getDataFromFiles();
         manageBook();
-        bookDAO.writeDataToFiles(booklist);
+        bookDAO.writeDataToFiles(booklist, todayDate);
     }
 
     private void manageBook() {

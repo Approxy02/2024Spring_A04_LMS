@@ -124,7 +124,7 @@ public class Process4 {
 
         borrowed = matchBooks.get(inputNum - 1);
         inputUserInfoPrompt(borrowed);
-        bookDAO.writeDataToFiles(bookList);
+        bookDAO.writeDataToFiles(bookList, todayDate);
         return true;
     }
 
@@ -221,7 +221,7 @@ public class Process4 {
             selected.setBookRecords(new ArrayList<>());
         }
         selected.getBookRecords().add(curRecord);   //대출 기록 반납일자를 오늘로 하여 기록 추가
-        bookDAO.writeDataToFiles(bookList);
+        bookDAO.writeDataToFiles(bookList, todayDate);
     }
 
     //2024 02 01

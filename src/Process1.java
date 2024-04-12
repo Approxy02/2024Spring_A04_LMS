@@ -32,7 +32,7 @@ public class Process1 {    //도서 추가 기능
         location = getLocation();
         index = getIndex(title, author);
         booklist.add(new BookVO(title, author, todayDate, index, location));
-        bookDAO.writeDataToFiles(booklist);
+        bookDAO.writeDataToFiles(booklist, todayDate);
         System.out.println("도서 등록이 완료되었습니다.");
         System.out.println(title + " / " + author + " / " + todayDate + " / " + index + " / " + location);
         System.out.println("------------------------------------------------------------");

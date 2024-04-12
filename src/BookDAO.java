@@ -17,7 +17,7 @@ public class BookDAO {
         checkDataValidation(); //프로그램 시작시 데이터 유효성 검사
     }
 
-    private void checkDataValidation() {
+    public void checkDataValidation() {
         String projectPath = System.getProperty("user.dir");
 
         if (projectPath == null) {
@@ -53,6 +53,18 @@ public class BookDAO {
         getDataFromFiles();
     }
 
+    public String getLastDate() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(bookListFile));
+            String line = reader.readLine();
+            reader.close();
+            return line;
+        } catch (IOException e) {
+            System.err.println("파일 읽기 오류: " + e.getMessage());
+            System.exit(1);
+        }
+        return null;
+    }
 
     public ArrayList<BookVO> getDataFromFiles() {
         ArrayList<BookVO> bookList = new ArrayList<>();
@@ -60,8 +72,12 @@ public class BookDAO {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(bookListFile));
             String line;
-
+            int lineCount = 0;
             while ((line = reader.readLine()) != null) {
+                if(lineCount == 0){
+                    lineCount++;
+                    continue;
+                }
                 readBookListFile(line, bookList);
             }
 
@@ -208,7 +224,7 @@ public class BookDAO {
         }
     }
 
-    public void writeDataToFiles(ArrayList<BookVO> bookList) {
+    public void writeDataToFiles(ArrayList<BookVO> bookList, String todayDate) {
 
         File[] existingFiles = booksFolder.listFiles();
         if (existingFiles != null) {
@@ -221,6 +237,8 @@ public class BookDAO {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(bookListFile));
+            writer.write(todayDate);
+            writer.newLine(); // 줄바꿈 추가
 
             for (int i = 0; i < bookList.size(); i++) {
                 BookVO book = bookList.get(i);

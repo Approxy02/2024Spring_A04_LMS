@@ -7,11 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="MainProgram 버그 수정">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="도서.txt의 형식 변경3">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/도서관(도서_1).txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Process4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/어린왕자(1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/어린왕자(쥐페리_1).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessForTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessForTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +36,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -44,6 +52,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -94,7 +103,10 @@
       <workItem from="1712020875327" duration="382000" />
       <workItem from="1712641285964" duration="43000" />
       <workItem from="1712641333072" duration="2324000" />
-      <workItem from="1712667414617" duration="592000" />
+      <workItem from="1712667414617" duration="855000" />
+      <workItem from="1712668273819" duration="228000" />
+      <workItem from="1712921544972" duration="1680000" />
+      <workItem from="1712923230534" duration="1111000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -120,7 +132,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712643324595</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="도서.txt의 형식 변경">
+      <option name="closed" value="true" />
+      <created>1712668211680</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712668211680</updated>
+    </task>
+    <task id="LOCAL-00005" summary="도서.txt의 형식 변경2">
+      <option name="closed" value="true" />
+      <created>1712668288459</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712668288459</updated>
+    </task>
+    <task id="LOCAL-00006" summary="도서.txt의 형식 변경3">
+      <option name="closed" value="true" />
+      <created>1712668384714</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712668384714</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,10 +174,28 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="메인 메뉴 구현" />
     <MESSAGE value="BookVO, BookDAO 추가" />
     <MESSAGE value="MainProgram 버그 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="MainProgram 버그 수정" />
+    <MESSAGE value="도서.txt의 형식 변경" />
+    <MESSAGE value="도서.txt의 형식 변경2" />
+    <MESSAGE value="도서.txt의 형식 변경3" />
+    <option name="LAST_COMMIT_MESSAGE" value="도서.txt의 형식 변경3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Process4.java</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

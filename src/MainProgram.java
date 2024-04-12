@@ -9,6 +9,7 @@ public class MainProgram {
     private Process3 process3;
     private Process4 process4;
     private ProcessForTest processForTest; //테스트용
+    private final String lastDate; //최근 접속 일자
     private String todayDate; //프로그램 처음 시작시 입력받는 오늘 날짜
     private String process_input; //메뉴 입력값
 
@@ -16,6 +17,10 @@ public class MainProgram {
 
         //for debug
 //        processForTest = new ProcessForTest();
+
+        BookDAO initDao = new BookDAO();
+        initDao.checkDataValidation(); // 무결성 검증
+        this.lastDate = initDao.getLastDate(); // 최근 접속 일자 가져오기
 
         input_Date();
 
@@ -30,13 +35,13 @@ public class MainProgram {
             System.out.print("> A04 LMS : menu > ");
             Scanner sc = new Scanner(System.in);
 
-            try {
-                process_input = sc.nextLine();
+//            try {
+                process_input = sc.nextLine().trim();
 //                System.out.println(process_input);
                 if (Integer.parseInt(process_input) != 5)
                     System.out.println("------------------------------------------------------------");
                 if (isValid_MenuInput(process_input)) {
-                    menu = Integer.parseInt(process_input);
+                    int menu = Integer.parseInt(process_input);
                     if (menu == 1)
                         process1 = new Process1(todayDate);
                     else if (menu == 2)
@@ -56,11 +61,12 @@ public class MainProgram {
                     System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
                     System.out.println("------------------------------------------------------------");
                 }
-            } catch (Exception e) {
-                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
-                System.out.println("------------------------------------------------------------");
-
-            }
+//            } catch (Exception e) {
+//                System.out.println(e);
+//                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
+//                System.out.println("------------------------------------------------------------");
+//
+//            }
 
         }
 
@@ -69,11 +75,13 @@ public class MainProgram {
     private void input_Date() {
 
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println();
         while (true) {
-            System.out.println();
-            System.out.print("\"년+월+일\"을 입력하세요 > ");
+            System.out.println("> A04 Library Management System (LMS)");
+            System.out.println("  최근접속일자 : " + lastDate);
+            System.out.print("\"오늘 날짜(년+월+일)\"을 입력하세요 > ");
             String input = scanner.nextLine();
+
             System.out.println("------------------------------------------------------------");
 //          System.out.println("input: " + input);
             if (input != null && !input.trim().isEmpty() && input.length() <= 15) {
@@ -91,6 +99,7 @@ public class MainProgram {
                 System.out.println("------------------------------------------------------------");
             }
         }
+
     }
 
     private boolean Is_valid_date(String e) {
@@ -106,18 +115,22 @@ public class MainProgram {
 
             // 유효한 날짜인지 검사
             if (Is_valid_date2(year, month, day)) {
-                if (Integer.toString(day).length() == 1 || Integer.toString(month).length() == 1) {
-                    if (Integer.toString(month).length() == 1 && Integer.toString(day).length() == 1)
-                        this.todayDate = year + " 0" + month + " 0" + day;
-                    else if (Integer.toString(month).length() == 1)
-                        this.todayDate = year + " 0" + month + " " + day;
-                    else
-                        this.todayDate = year + " " + month + " 0" + day;
-                } else
-                    this.todayDate = year + " " + month + " " + day;
-                //for debug
+                if(Is_valid_date3(year, month, day)) {
+                    if (Integer.toString(day).length() == 1 || Integer.toString(month).length() == 1) {
+                        if (Integer.toString(month).length() == 1 && Integer.toString(day).length() == 1)
+                            this.todayDate = year + " 0" + month + " 0" + day;
+                        else if (Integer.toString(month).length() == 1)
+                            this.todayDate = year + " 0" + month + " " + day;
+                        else
+                            this.todayDate = year + " " + month + " 0" + day;
+                    } else
+                        this.todayDate = year + " " + month + " " + day;
+                    //for debug
 //                System.out.println("today : " + todayDate);
-                return true;
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
@@ -171,6 +184,28 @@ public class MainProgram {
                     }
                 }
             }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean Is_valid_date3(int year, int month, int day){
+        try {
+            String[] parts = lastDate.split(" ");
+            int lastYear = Integer.parseInt(parts[0]);
+            int lastMonth = Integer.parseInt(parts[1]);
+            int lastDay = Integer.parseInt(parts[2]);
+
+            if(year < lastYear)
+                return false;
+            else if(year == lastYear){
+                if(month < lastMonth)
+                    return false;
+                else if(month == lastMonth){
+                    return day >= lastDay;
+                }
+            }
+            return true;
         } catch (Exception e) {
             return false;
         }

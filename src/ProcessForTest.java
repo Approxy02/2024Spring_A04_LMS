@@ -4,7 +4,7 @@ public class ProcessForTest {
     public ProcessForTest() {
         //test1();
         System.out.println("------------------------------------------------------------");
-        test2();
+//        test2();
 
     }
 
@@ -17,21 +17,21 @@ public class ProcessForTest {
 //
 //    }
 
-    public void test2() {
-        BookDAO bookDAO = new BookDAO();
-        ArrayList<BookVO> bookList = bookDAO.getDataFromFiles();
-        //for debug
-        for(BookVO book : bookList){
-            book.printBookInfo();
-        }
-        bookDAO.writeDataToFiles(bookList);
-        bookDAO.getDataFromFiles();
-        //for debug
-        System.out.println("------------------------------------------------------------");
-        for(BookVO book : bookList){
-            book.printBookInfo();
-        }
-    }
+//    public void test2() {
+//        BookDAO bookDAO = new BookDAO();
+//        ArrayList<BookVO> bookList = bookDAO.getDataFromFiles();
+//        //for debug
+//        for(BookVO book : bookList){
+//            book.printBookInfo();
+//        }
+//        bookDAO.writeDataToFiles(bookList);
+//        bookDAO.getDataFromFiles();
+//        //for debug
+//        System.out.println("------------------------------------------------------------");
+//        for(BookVO book : bookList){
+//            book.printBookInfo();
+//        }
+//    }
 
 
 }
