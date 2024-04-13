@@ -58,12 +58,14 @@ public class BookDAO {
             BufferedReader reader = new BufferedReader(new FileReader(bookListFile));
             String line = reader.readLine();
             reader.close();
-            return line;
+            if(line != null)
+                return line;
+            else return "1902 01 01";
         } catch (IOException e) {
             System.err.println("파일 읽기 오류: " + e.getMessage());
             System.exit(1);
         }
-        return null;
+        return "null";
     }
 
     public ArrayList<BookVO> getDataFromFiles() {
