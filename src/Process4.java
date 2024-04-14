@@ -32,6 +32,7 @@ public class Process4 {
             System.out.print("> 대여 서비스 > ");
 
             String input = scanner.nextLine();
+            input = input.replace(" ", "");
             int nextPrompt = parseForMainPrompt(input);
             switch (nextPrompt){
                 case 1:
@@ -153,6 +154,7 @@ public class Process4 {
             System.out.println("--------------------------------------------------------------------------");
             System.out.print("“학번”을 입력하세요 > ");
             input = scanner.nextLine();
+            input = input.replace(" ", "");
             if(regexForUserInfo(input)){    //학번 검증
                 selectReturnBook(Integer.parseInt(input));
                 break;
@@ -262,6 +264,7 @@ public class Process4 {
     }
 
     private int parseForSearchBooks(String input){
+        input = input.replace(" ", "");
         try {
             return Integer.parseInt(input);
         } catch (Exception e){
@@ -281,6 +284,7 @@ public class Process4 {
 
     private void printRecord() {
 //        BookDAO bookDAO = new BookDAO(); // 임시 bookDAO - 공동으로 사용하는 bookDAO가 있으면 그것을 가져와야 함 => class bookDAO로 변경
+        String input;
         ArrayList<BookVO> Books = bookDAO.getDataFromFiles();
         if (Books.isEmpty()) {
             System.out.println("검색 결과가 존재하지 않습니다.");
@@ -307,7 +311,11 @@ public class Process4 {
         System.out.println("‘q’를 입력하여 뒤로가기");
         System.out.println("------------------------------------------------------------");
         System.out.print("> A04 LMS: borrrow books > ");
-        while(!scanner.nextLine().equals("q")){
+        while(true){
+            input = scanner.nextLine();
+            input = input.replace(" ", "");
+            if(input.equals("q"))
+                break;
             System.out.println("q 외에 다른 입력은 허용되지 않습니다.");
         }
     }
