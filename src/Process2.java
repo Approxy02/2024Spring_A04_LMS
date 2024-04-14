@@ -16,7 +16,6 @@ public class Process2 {
     private String process_input; //메뉴 입력값
     Scanner scanner; // 스캐너 메인 메뉴와 통일 필요성?
     public Process2(String todayDate) {
-
         this.todayDate = todayDate;
 
         while (true) {
@@ -28,31 +27,19 @@ public class Process2 {
             System.out.print("> A04 LMS: Search books > ");
             scanner = new Scanner(System.in);
 
-            try {
-                process_input = scanner.nextLine();
-                if (Integer.parseInt(process_input) != 3)
-                    System.out.println("------------------------------------------------------------");
-                if (isValid_MenuInput(process_input)) {
-                    menu = Integer.parseInt(process_input);
+            process_input = scanner.nextLine();
+            menu = validatedMenuInput(process_input);
 
-                    if (menu == 1)
-                        searchByTitle();
-                    else if (menu == 2)
-                        searchByAuthor();
-                    else if (menu == 3)
-                        break;
-                    else {
-                        System.out.println("잘못 입력했습니다. 범위(1~3) 안에서 다시 선택해주세요");
-                        System.out.println("------------------------------------------------------------");
-                    }
-                } else {
-                    System.out.println("잘못 입력했습니다. 범위(1~3) 안에서 다시 선택해주세요");
-                    System.out.println("------------------------------------------------------------");
-                }
-            } catch (Exception e) {
-                System.out.println("------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------");
+            if(menu < 0) {
                 System.out.println("잘못 입력했습니다. 범위(1~3) 안에서 다시 선택해주세요");
                 System.out.println("------------------------------------------------------------");
+            } else if(menu == 1) {
+                searchByTitle();
+            } else if(menu == 2) {
+                searchByAuthor();
+            } else if(menu == 3) {
+                break;
             }
         }
     }
@@ -82,6 +69,8 @@ public class Process2 {
                 } else {
                     success = true;
                     int bookNum = 1;
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("> A04 LMS");
                     System.out.println("  제목/ 저자 / 등록날짜 / 인덱스 / 위치 / 대여기간");
                     for (BookVO book : filteredBooks) {
                         //System.out.println((bookNum++) + ")" + book.toBookFileString());
@@ -122,6 +111,8 @@ public class Process2 {
                 } else {
                     success = true;
                     int bookNum = 1;
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("> A04 LMS");
                     System.out.println("  제목 / 저자 / 등록날짜 / 인덱스 / 위치 / 대여기간");
                     for (BookVO book : filteredBooks) {
                         //System.out.println((bookNum++) + ")" + book.toBookFileString());
@@ -137,24 +128,27 @@ public class Process2 {
         } while(!success);
     }
 
-    private boolean isValid_MenuInput(String e) {
-        if (e.length() != 1) {
-            e = e.trim();
-            if (e.length() != 1)
-                return false;
-            else {
-                int analysis = Integer.parseInt(e);
-                if (analysis < 1 || analysis > 3)
-                    return false;
-                else
-                    this.process_input = Integer.toString(analysis);
-                return true;
+    // 문법 형식에 맞는 메뉴 입력 반환
+    // 성공하면 메뉴 입력값, 실패하면 -1 반환
+    private int validatedMenuInput(String e) {
+        e = e.trim();
+        if (e.length() != 1)
+            return -1;
+        else {
+            try {
+                int num = Integer.parseInt(e);
+                if (num < 1 || num > 3)
+                    return -1;
+                else // num = 1, 2, 3
+                    return num;
+            } catch(NumberFormatException ex) {
+                return -1;
             }
         }
-        int analysis = Integer.parseInt(e);
-        return analysis >= 1 && analysis <= 3;
     }
 
+    // 문법 형식에 맞는 문자열을 입력했는지 반환
+    // 성공하면 true, 실패하면 false반환
     private boolean isValid_ProcessInput(String e) {
         return !e.trim().isEmpty();
     }
