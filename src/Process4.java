@@ -308,10 +308,10 @@ public class Process4 {
                 }
             }
         }
+        while(true){
         System.out.println("‘q’를 입력하여 뒤로가기");
         System.out.println("------------------------------------------------------------");
         System.out.print("> A04 LMS: borrrow books > ");
-        while(true){
             input = scanner.nextLine();
             input = input.replace(" ", "");
             if(input.equals("q"))
