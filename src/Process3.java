@@ -26,6 +26,10 @@ public class Process3 {     //도서 관리 기능
     }
 
     private void manageBook() {
+        if(booklist.isEmpty()){
+            System.out.println("등록된 도서가 없습니다.");
+            return;
+        }
         BookVO book;    //관리할 도서
         searchByTitle();
         book = chooseBook();
@@ -317,6 +321,6 @@ public class Process3 {     //도서 관리 기능
         return analysis >= 1 && analysis <= n;
     }
     private boolean isValid_ProcessInput(String e) {
-        return !e.trim().isEmpty();
+        return !e.trim().isEmpty() || e.trim().isBlank();
     }
 }
