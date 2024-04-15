@@ -58,18 +58,40 @@ public class Process4 {
     }
 
     private void borrowBookPrompt(){
-
-        while(true){
-            System.out.println("> A04 LMS");
-            System.out.println("검색할 도서의 제목 일부분을 입력하세요.");
+        
+        if(!checkCanBorrow()) {
+            System.out.println("현재 대여가능한 도서가 없습니다.");
             System.out.println("--------------------------------------------------------------------------");
-            System.out.print("> A04 LMS: Search by Title > ");
-            String input = scanner.nextLine();
-            if(searchBorrowBookPrompt(input)){  //존재하지 않는 책이면 false return하여 while 한번더
-                break;
+        }else {
+            while (true) {
+                System.out.println("> A04 LMS");
+                System.out.println("검색할 도서의 제목 일부분을 입력하세요.");
+                System.out.println("--------------------------------------------------------------------------");
+                System.out.print("> A04 LMS: Search by Title > ");
+                String input = scanner.nextLine();
+                if (searchBorrowBookPrompt(input)) {  //존재하지 않는 책이면 false return하여 while 한번더
+                    break;
+                }
+                System.out.println("검색 결과가 존재하지 않습니다.");
             }
-            System.out.println("검색 결과가 존재하지 않습니다.");
         }
+    }
+
+    private boolean checkCanBorrow() {
+        System.out.println("bookList.size() = "+ bookList.size() );
+        if (bookList.isEmpty())
+            return false;
+
+        for(BookVO book : bookList){
+            try {
+//                System.out.println(book.getCurrentRecord().getStudentNum());
+                if (book.getCurrentRecord() == null)
+                    return true;
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        return false;
     }
 
     private boolean searchBorrowBookPrompt(String paramInput){
