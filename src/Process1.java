@@ -44,7 +44,8 @@ public class Process1 {    //도서 추가 기능
             System.out.print("\"도서 제목\"을 입력하세요 > ");
             scanner = new Scanner(System.in);
             title = scanner.nextLine();
-            if(title.trim().isBlank()) {
+            title = title.trim();
+            if(title.isEmpty()) {
                 System.out.println("------------------------------------------------------------");
                 continue;
             }
