@@ -51,8 +51,6 @@ public class Process3 {     //도서 관리 기능
 
             try {
                 process_input = scanner.nextLine();
-                if (Integer.parseInt(process_input) != 5)
-                    System.out.println("------------------------------------------------------------");
                 if (isValid_MenuInput(process_input, 5)) {
                     menu = Integer.parseInt(process_input);
                     if (menu == 1) {
@@ -75,15 +73,15 @@ public class Process3 {     //도서 관리 기능
                     if (menu == 5) {
                         return;
                     } else {
-                        System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요1");
+                        System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
                         System.out.println("------------------------------------------------------------");
                     }
                 } else {
-                    System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요2");
+                    System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
                     System.out.println("------------------------------------------------------------");
                 }
             } catch (Exception e) {
-                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요3");
+                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
                 System.out.println("------------------------------------------------------------");
 
             }
@@ -317,6 +315,7 @@ public class Process3 {     //도서 관리 기능
                 return true;
             }
         }
+        e = e.trim();
         int analysis = Integer.parseInt(e);
         return analysis >= 1 && analysis <= n;
     }
