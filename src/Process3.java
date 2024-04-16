@@ -26,6 +26,10 @@ public class Process3 {     //도서 관리 기능
     }
 
     private void manageBook() {
+        if(booklist.isEmpty()){
+            System.out.println("등록된 도서가 없습니다.");
+            return;
+        }
         BookVO book;    //관리할 도서
         searchByTitle();
         book = chooseBook();
@@ -149,6 +153,7 @@ public class Process3 {     //도서 관리 기능
             scanner = new Scanner(System.in);
 
             process_input = scanner.nextLine();
+            process_input = process_input.trim();
             if(isValid_ProcessInput(process_input)){
                 int index = getIndex(book.getTitle(), process_input);
                 book.setAuthor(process_input);
@@ -156,7 +161,6 @@ public class Process3 {     //도서 관리 기능
                 System.out.println("저자가 성공적으로 변경되었습니다.");
                 return;
             }else {
-                System.out.println("문자열을 입력해주세요.(공백류만을 저자로 사용할 수 없습니다)");
                 continue;
             }
         }
@@ -174,6 +178,7 @@ public class Process3 {     //도서 관리 기능
             scanner = new Scanner(System.in);
 
             process_input = scanner.nextLine();
+            process_input = process_input.trim();
             if(isValid_ProcessInput(process_input)){
                 int index = getIndex(process_input, book.getAuthor());
                 book.setTitle(process_input);
@@ -181,7 +186,6 @@ public class Process3 {     //도서 관리 기능
                 System.out.println("제목이 성공적으로 변경되었습니다.");
                 return;
             }else {
-                System.out.println("문자열을 입력해주세요.(공백류만을 제목으로 사용할 수 없습니다)");
                 continue;
             }
         }
