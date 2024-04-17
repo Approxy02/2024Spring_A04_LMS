@@ -7,9 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="최근접속일자 구현">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" beforeDir="false" />
     </list>
@@ -168,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712924392390</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="도서 검색 수정 : 등록 도서 0권 일 때 무한루프 해결">
+      <option name="closed" value="true" />
+      <created>1713355348953</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713355348953</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +202,9 @@
     <MESSAGE value="도서.txt의 형식 변경2" />
     <MESSAGE value="도서.txt의 형식 변경3" />
     <MESSAGE value="최근접속일자 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="최근접속일자 구현" />
+    <MESSAGE value="도서 검색 수정 : 등록 도서 0권 일 때 무한루프 해결" />
+    <MESSAGE value="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

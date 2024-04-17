@@ -72,13 +72,12 @@ public class Process4 {
                 if (searchBorrowBookPrompt(input)) {  //존재하지 않는 책이면 false return하여 while 한번더
                     break;
                 }
-                System.out.println("검색 결과가 존재하지 않습니다.");
             }
         }
     }
 
     private boolean checkCanBorrow() {
-        System.out.println("bookList.size() = "+ bookList.size() );
+        //System.out.println("bookList.size() = "+ bookList.size() );
         if (bookList.isEmpty())
             return false;
 
@@ -104,15 +103,26 @@ public class Process4 {
 //===============================================ForTesting===========================
 
         ArrayList<BookVO> matchBooks = new ArrayList<>();   //검색 결과를 담을 List
+        Boolean isAllBooksBorrowed = true;                  //찾은 모든 책이 대여중인지 확인하기 위한 변수
 
         for(int i = 0; i < bookList.size(); i++){   //정규식으로 일치하는 모든 책을 탐색
             if(bookList.get(i).getTitle().matches(regex)){
                 matchBooks.add(bookList.get(i));
+                if(bookList.get(i).getCurrentRecord() == null) //하나라도 대여 가능하다면 isAllBooksBorrowed = false
+                    isAllBooksBorrowed = false;
             }
         }
 
-        if(matchBooks.isEmpty())    //탐색결과 없음
+        if(matchBooks.isEmpty()) {  //탐색결과 없음
+            System.out.println("검색 결과가 존재하지 않습니다.");
+            System.out.println("--------------------------------");
             return false;
+        }
+        if(isAllBooksBorrowed){     //입력한 제목에 해당하는 모든 책이 대여 중
+            System.out.println("해당하는 모든 책이 대여중입니다.");
+            System.out.println("--------------------------------");
+            return false;
+        }
 
 //===============================================ForTesting===========================
 //        System.out.println("matchBook");
