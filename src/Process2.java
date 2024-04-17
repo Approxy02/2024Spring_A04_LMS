@@ -15,9 +15,14 @@ public class Process2 {
     private String todayDate;
     private String process_input; //메뉴 입력값
     Scanner scanner; // 스캐너 메인 메뉴와 통일 필요성?
+    private BookDAO bookDAO = new BookDAO();
+    ArrayList<BookVO> booklist = bookDAO.getDataFromFiles();
     public Process2(String todayDate) {
         this.todayDate = todayDate;
-
+        if(booklist.isEmpty()){
+            System.out.println("등록된 도서가 없습니다.");
+            return;
+        }
         while (true) {
             System.out.println("> A04 LMS");
             System.out.println("1) Search by Title (제목 검색)");
