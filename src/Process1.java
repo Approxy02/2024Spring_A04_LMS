@@ -44,7 +44,16 @@ public class Process1 {    //도서 추가 기능
             System.out.print("\"도서 제목\"을 입력하세요 > ");
             scanner = new Scanner(System.in);
             title = scanner.nextLine();
+            String tmpTitle = title;
             title = title.trim();
+            if(!tmpTitle.equals(title)){
+                System.out.println("------------------------------------------------------------");
+                continue;
+            }
+            if(title.contains("\t")){
+                System.out.println("------------------------------------------------------------");
+                continue;
+            }
             if(title.isEmpty()) {
                 System.out.println("------------------------------------------------------------");
                 continue;
@@ -62,6 +71,16 @@ public class Process1 {    //도서 추가 기능
             System.out.print("\"도서 저자\"을 입력하세요 > ");
             scanner = new Scanner(System.in);
             author = scanner.nextLine();
+            String tmpAuthor = author;
+            author = author.trim();
+            if(!tmpAuthor.equals(author)){
+                System.out.println("------------------------------------------------------------");
+                continue;
+            }
+            if(author.contains("\t")){
+                System.out.println("------------------------------------------------------------");
+                continue;
+            }
             if(author.trim().isBlank()) {
                 System.out.println("------------------------------------------------------------");
                 continue;

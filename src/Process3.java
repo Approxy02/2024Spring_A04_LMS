@@ -151,6 +151,14 @@ public class Process3 {     //도서 관리 기능
             scanner = new Scanner(System.in);
 
             process_input = scanner.nextLine();
+            String tmpInput = process_input;
+            process_input = process_input.trim();
+            if(!tmpInput.equals(process_input)){
+                continue;
+            }
+            if(process_input.contains("\t")){
+                continue;
+            }
             process_input = process_input.trim();
             if(isValid_ProcessInput(process_input)){
                 int index = getIndex(book.getTitle(), process_input);
@@ -176,7 +184,14 @@ public class Process3 {     //도서 관리 기능
             scanner = new Scanner(System.in);
 
             process_input = scanner.nextLine();
+            String tmpInput = process_input;
             process_input = process_input.trim();
+            if(!tmpInput.equals(process_input)){
+                continue;
+            }
+            if(process_input.contains("\t")){
+                continue;
+            }
             if(isValid_ProcessInput(process_input)){
                 int index = getIndex(process_input, book.getAuthor());
                 book.setTitle(process_input);

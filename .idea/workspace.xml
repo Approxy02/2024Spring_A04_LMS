@@ -7,11 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="최근접속일자 구현">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/전공기초프로젝트(차리서_1).txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;kisusu115&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kisusu115"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Klngscrown/A04_LMS.git&quot;,
-    &quot;accountId&quot;: &quot;60c03bc0-32cf-4d99-9c5f-fdd2b84a937f&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Klngscrown/A04_LMS.git",
+    "accountId": "60c03bc0-32cf-4d99-9c5f-fdd2b84a937f"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -64,7 +67,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/mac/Desktop/2024-1/전기프/A04_LMS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -168,15 +170,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712924392390</updated>
     </task>
-    <task id="LOCAL-00008" summary="도서 검색 수정 : 등록 도서 0권 일 때 무한루프 해결">
-      <option name="closed" value="true" />
-      <created>1713355348953</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1713355348953</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,9 +196,7 @@
     <MESSAGE value="도서.txt의 형식 변경2" />
     <MESSAGE value="도서.txt의 형식 변경3" />
     <MESSAGE value="최근접속일자 구현" />
-    <MESSAGE value="도서 검색 수정 : 등록 도서 0권 일 때 무한루프 해결" />
-    <MESSAGE value="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="도서 대여 수정 : 검색에 해당하는 모든 책이 대여중일 때의 무한루프 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="최근접속일자 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
