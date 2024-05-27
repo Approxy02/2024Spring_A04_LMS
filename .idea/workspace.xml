@@ -8,13 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="최근접속일자 구현">
-      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/전공기초프로젝트(차리서_1).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/user/202011377.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_1).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kisusu115"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kisusu115&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Klngscrown/A04_LMS.git",
-    "accountId": "60c03bc0-32cf-4d99-9c5f-fdd2b84a937f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Klngscrown/A04_LMS.git&quot;,
+    &quot;accountId&quot;: &quot;6ea6330a-a969-42bc-99dc-33a5d98176c2&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,11 +76,16 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
     &quot;애플리케이션.Main.executor&quot;: &quot;Run&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -91,6 +94,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -113,6 +124,12 @@
       <workItem from="1712923230534" duration="1229000" />
       <workItem from="1712936800023" duration="1612000" />
       <workItem from="1712938421671" duration="82000" />
+      <workItem from="1714444441433" duration="617000" />
+      <workItem from="1714703355066" duration="13000" />
+      <workItem from="1715757674816" duration="93000" />
+      <workItem from="1716275135364" duration="2688000" />
+      <workItem from="1716559275471" duration="35000" />
+      <workItem from="1716816635238" duration="817000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -201,11 +218,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Process4.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
