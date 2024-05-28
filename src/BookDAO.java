@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BookDAO {
 
@@ -58,7 +59,7 @@ public class BookDAO {
             BufferedReader reader = new BufferedReader(new FileReader(bookListFile));
             String line = reader.readLine();
             reader.close();
-            if(line != null)
+            if (line != null)
                 return line;
             else return "1902 01 01";
         } catch (IOException e) {
@@ -76,7 +77,7 @@ public class BookDAO {
             String line;
             int lineCount = 0;
             while ((line = reader.readLine()) != null) {
-                if(lineCount == 0){
+                if (lineCount == 0) {
                     lineCount++;
                     continue;
                 }
@@ -95,7 +96,7 @@ public class BookDAO {
         //각 도서들의 이전 대여 기록 가져오기
 
         for (BookVO book : bookList) {
-            String filename = book.getTitle() + "(" + book.getAuthor() + "_"+ book.getIndex() + ").txt";
+            String filename = book.getTitle() + "(" + book.getAuthor() + "_" + book.getIndex() + ").txt";
 
             //for debug
 //            System.out.println(filename);
@@ -184,7 +185,7 @@ public class BookDAO {
                 System.err.println("잘못된 형식의 데이터입니다\n" + fileName + "\n" + line + "\nin Line " + count);
                 System.exit(1);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println("잘못된 형식의 데이터입니다\n" + fileName + "\n" + line + "\nin Line " + count);
             System.exit(1);
         }
@@ -226,19 +227,127 @@ public class BookDAO {
         }
     }
 
+    public User getUserInfo(String studentNum) {
+        String userFilePath = System.getProperty("user.dir");
+        userFilePath += "/src/dataFiles/user/" + studentNum + ".txt";
+        File userFile = new File(userFilePath);
+        if (!userFile.exists()) {
+            System.err.println(studentNum + " 학번의 사용자 정보가 없습니다.");
+            return null;
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(userFile));
+            String line;
+            line = reader.readLine();
+            String[] parts = line.split("/");
+
+            User user;
+
+            if (parts.length == 3) {
+                user = new User(parts[0], Integer.parseInt(parts[1]), parts[2]);
+            } else {
+                user = new User(parts[0], Integer.parseInt(parts[1]), null);
+            }
+
+            while ((line = reader.readLine()) != null) {
+                if(line.isEmpty())
+                    break;
+                String[] currentBooksParts = line.split("/");
+                if (currentBooksParts.length == 6) {
+                    String[] recordParts = currentBooksParts[5].split("~");
+                    if(recordParts.length != 2)
+                    {
+                        System.err.println("잘못된 형식의 데이터입니다: " + studentNum + ".txt " + line);
+                        System.exit(1);
+                    }
+                    BookRecord currentRecord = new BookRecord(recordParts[0].trim(), recordParts[1].trim(), studentNum);
+                    BookVO book = new BookVO(currentBooksParts[0], currentBooksParts[1], currentBooksParts[2], Integer.parseInt(currentBooksParts[3]), currentBooksParts[4], currentRecord);
+                    user.addCurrentBorrowedBook(book);
+                } else {
+                    System.err.println("잘못된 형식의 데이터입니다: " + studentNum + ".txt " + line);
+                    System.exit(1);
+                }
+            }
+
+            while ((line = reader.readLine()) != null){
+                String[] pastBooksParts = line.split("/");
+                if (pastBooksParts.length == 6) {
+                    String[] recordParts = pastBooksParts[5].split("~");
+                    if(recordParts.length != 2)
+                    {
+                        System.err.println("잘못된 형식의 데이터입니다: " + studentNum + ".txt " + line);
+                        System.exit(1);
+                    }
+                    BookRecord pastRecord = new BookRecord(recordParts[0].trim(), recordParts[1].trim(), studentNum);
+                    BookVO book = new BookVO(pastBooksParts[0], pastBooksParts[1], pastBooksParts[2], Integer.parseInt(pastBooksParts[3]), pastBooksParts[4], pastRecord);
+                    user.addPreviousBorrowedBook(book);
+                } else {
+                    System.err.println("잘못된 형식의 데이터입니다: " + studentNum + ".txt " + line);
+                    System.exit(1);
+                }
+            }
+
+            reader.close();
+
+            return user;
+
+        } catch (Exception e) {
+            System.err.println("파일 읽기 오류: " + e.getMessage());
+            System.exit(1);
+        }
+        return null;
+    }
+
+    public void writeUserToFile(User user) {
+        String userFilePath = System.getProperty("user.dir");
+        userFilePath += "/src/dataFiles/user/" + user.getStudentNum() + ".txt";
+        File userFile = new File(userFilePath);
+        if (!userFile.exists()) {
+            System.err.println(user.getStudentNum() + " 학번의 사용자 정보가 없습니다.");
+            return;
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(userFile));
+            writer.write(user.getStudentNum() + "/" + user.getIsPenalty() + "/" + user.getPenaltyDate());
+            writer.newLine();
+            ArrayList<BookVO> currentBooks = user.getCurrentBorrowedBooks();
+            if (currentBooks != null) {
+                for (BookVO book : currentBooks) {
+                    writer.write(book.toBookFileStringWithoutSno());
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+            ArrayList<BookVO> pastBooks = user.getPreviousBorrowedBooks();
+            if (pastBooks != null) {
+                for (BookVO book : pastBooks) {
+                    writer.write(book.toBookFileStringWithoutSno());
+                    writer.newLine();
+                }
+            }
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("파일 쓰기 오류: " + e.getMessage());
+            System.exit(1);
+        }
+    }
+
     public void writeDataToFiles(ArrayList<BookVO> bookList, String todayDate) {
 
-        if(bookList.isEmpty()){
+        if (bookList.isEmpty()) {
             //빈 책 리스트를 받은 경우, booklist.txt에는 날짜만 기입한다.
             //books하위파일들은 모두 삭제한다.
-            try{
+            try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(bookListFile));
                 writer.write(todayDate);
                 writer.newLine();
                 writer.flush();
                 writer.close();
-            }catch(IOException e){
-                System.out.println("파일 쓰기 오류:"+e.getMessage());
+            } catch (IOException e) {
+                System.out.println("파일 쓰기 오류:" + e.getMessage());
                 System.exit(1);
             }
 
@@ -250,7 +359,7 @@ public class BookDAO {
                     }
                 }
             }
-        }else{
+        } else {
             //빈 리스트가 아닌경우 
             File[] existingFiles = booksFolder.listFiles();
             if (existingFiles != null) {
@@ -269,9 +378,9 @@ public class BookDAO {
                 for (int i = 0; i < bookList.size(); i++) {
                     BookVO book = bookList.get(i);
                     if (book.getCurrentRecord() == null) {
-                        writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation());
+                        writer.write(book.getTitle() + '/' + book.getAuthor() + '/' + book.getAddedDate() + '/' + book.getIndex() + '/' + book.getLocation());
                     } else {
-                        writer.write(book.getTitle()+'/'+book.getAuthor()+'/'+book.getAddedDate()+'/'+book.getIndex()+'/'+book.getLocation()+'/'+book.getCurrentRecord().getStartDate()+" ~ "+book.getCurrentRecord().getEndDate()+"/"+book.getCurrentRecord().getStudentNum());
+                        writer.write(book.getTitle() + '/' + book.getAuthor() + '/' + book.getAddedDate() + '/' + book.getIndex() + '/' + book.getLocation() + '/' + book.getCurrentRecord().getStartDate() + " ~ " + book.getCurrentRecord().getEndDate() + "/" + book.getCurrentRecord().getStudentNum());
                     }
                     if (i != bookList.size() - 1) {
                         writer.newLine(); // 마지막 요소가 아닌 경우에만 줄바꿈 추가
@@ -291,10 +400,10 @@ public class BookDAO {
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(new File(booksFolder, filename)));
                     writer.write(book.toBookFileString()); // BookVO의 toBookFileString() 메서드를 이용하여 책 파일 정보를 문자열로 변환하여 쓴다.
-                    if(book.getBookRecords() != null){
-                        for(BookRecord b : book.getBookRecords()){
+                    if (book.getBookRecords() != null) {
+                        for (BookRecord b : book.getBookRecords()) {
                             writer.newLine();
-                            writer.write(b.getStartDate()+" ~ "+b.getEndDate()+"/"+b.getStudentNum());
+                            writer.write(b.getStartDate() + " ~ " + b.getEndDate() + "/" + b.getStudentNum());
                         }
                     }
                     writer.close();
@@ -304,6 +413,6 @@ public class BookDAO {
                 }
             }
         }
-        }
+    }
 
 }

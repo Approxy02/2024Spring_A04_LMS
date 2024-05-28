@@ -1,10 +1,10 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class User {
     private String studentNum;
     private int isPenalty;
     private String penaltyDate;
-    private int borrowedBookCount;
     private ArrayList<BookVO> current_borrowed_books;
     private ArrayList<BookVO> previous_borrowed_books;
 
@@ -40,14 +40,6 @@ public class User {
         this.penaltyDate = penaltyDate;
     }
 
-    public int getBorrowedBookCount() {
-        return borrowedBookCount;
-    }
-
-    public void setBorrowedBookCount(int borrowedBookCount) {
-        this.borrowedBookCount = borrowedBookCount;
-    }
-
     public ArrayList<BookVO> getCurrentBorrowedBooks() {
         return current_borrowed_books;
     }
@@ -72,21 +64,23 @@ public class User {
         this.previous_borrowed_books.add(bookvo);
     }
 
-    public void printUser(){
+    public void printUser() {
         System.out.println("학번 : " + this.getStudentNum());
         System.out.println("연체 여부 : " + this.getIsPenalty());
         System.out.println("연체 날짜 : " + this.getPenaltyDate());
         ArrayList<BookVO> current_borrowed_books = this.getCurrentBorrowedBooks();
-        if (current_borrowed_books != null)
+        if (current_borrowed_books != null) {
+            System.out.println("현재 대여중인 도서");
             for (BookVO book : current_borrowed_books) {
-                System.out.println("현재 대여중인 도서");
                 book.printBookInfo();
             }
+        }
         ArrayList<BookVO> previous_borrowed_books = this.getPreviousBorrowedBooks();
-        if (previous_borrowed_books != null)
+        if (previous_borrowed_books != null) {
+            System.out.println("이전 대여 도서");
             for (BookVO book : previous_borrowed_books) {
-                System.out.println("이전 대여 도서");
                 book.printBookInfo();
             }
+        }
     }
 }
