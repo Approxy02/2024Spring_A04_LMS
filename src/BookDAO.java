@@ -303,10 +303,6 @@ public class BookDAO {
         String userFilePath = System.getProperty("user.dir");
         userFilePath += "/src/dataFiles/user/" + user.getStudentNum() + ".txt";
         File userFile = new File(userFilePath);
-        if (!userFile.exists()) {
-            System.err.println(user.getStudentNum() + " 학번의 사용자 정보가 없습니다.");
-            return;
-        }
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(userFile));
@@ -329,7 +325,7 @@ public class BookDAO {
             }
             writer.flush();
             writer.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("파일 쓰기 오류: " + e.getMessage());
             System.exit(1);
         }

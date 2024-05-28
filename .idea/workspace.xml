@@ -7,12 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="penalty 구현을 위한 User 생성">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="penalty 관련 DataFile 관리 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/user/202011377.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/user/202411111.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,7 @@
       <workItem from="1716275135364" duration="2688000" />
       <workItem from="1716559275471" duration="35000" />
       <workItem from="1716816635238" duration="1145000" />
-      <workItem from="1716882310664" duration="1873000" />
+      <workItem from="1716882310664" duration="6758000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -196,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716817739643</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="penalty 관련 DataFile 관리 구현">
+      <option name="closed" value="true" />
+      <created>1716884302978</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716884302978</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +229,8 @@
     <MESSAGE value="도서.txt의 형식 변경3" />
     <MESSAGE value="최근접속일자 구현" />
     <MESSAGE value="penalty 구현을 위한 User 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="penalty 구현을 위한 User 생성" />
+    <MESSAGE value="penalty 관련 DataFile 관리 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="penalty 관련 DataFile 관리 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
