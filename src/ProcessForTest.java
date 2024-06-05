@@ -1,19 +1,41 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProcessForTest {
     public ProcessForTest() {
-        //test1();
+//        test1();
         System.out.println("------------------------------------------------------------");
 //        test2();
 
     }
 
 //    public void test1() {
-//        BookVO book = new BookVO("코스모스", "칼", "2024 01 01", 1, "베스트셀러실", "2024 04 02", "2024 04 08", "202411011", null);
-//        book.printBookInfo();
-//        // BookRecord 추가
-//        book.addBookRecord(new BookRecord("2024 03 01", "2024 03 02", "202411233"));
-//        book.printBookInfo();
+////        BookVO book = new BookVO("코스모스", "칼", "2024 01 01", 1, "베스트셀러실", "2024 04 02", "2024 04 08", "202411011", null);
+////        book.printBookInfo();
+////        // BookRecord 추가
+////        book.addBookRecord(new BookRecord("2024 03 01", "2024 03 02", "202411233"));
+////        book.printBookInfo();
+//
+//        ArrayList<Location> l = new ArrayList<>();
+//        Location loc = new Location("베스트셀러실",100);
+//        Location loc2 = new Location("test00",101);
+//        Location loc3 = new Location("test02",133);
+//        l.add(loc);
+//        l.add(loc2);
+//        l.add(loc3);
+//
+//        BookDAO qq = new BookDAO();
+//        qq.writeLocationFiles(l);
+//
+//        System.out.println("flag1");
+//
+//        ArrayList<Location> l2 = new ArrayList<>();
+//        l2 = qq.getLocationInfoList();
+//        System.out.println("flag2");
+//
+//        for(Location lo : l2){
+//            System.out.println(lo.toLocationFileString());
+//        }
 //
 //    }
 
@@ -35,3 +57,4 @@ public class ProcessForTest {
 
 
 }
+

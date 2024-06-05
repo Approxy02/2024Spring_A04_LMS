@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -356,7 +357,7 @@ public class BookDAO {
                 }
             }
         } else {
-            //빈 리스트가 아닌경우 
+            //빈 리스트가 아닌경우
             File[] existingFiles = booksFolder.listFiles();
             if (existingFiles != null) {
                 for (File file : existingFiles) {
@@ -407,6 +408,106 @@ public class BookDAO {
                     System.err.println("파일 쓰기 오류: " + e.getMessage());
                     System.exit(1);
                 }
+            }
+        }
+    }
+
+    public ArrayList<Location> getLocationInfoList() {
+
+        ArrayList<Location> locationList = new ArrayList<>();
+
+        File locationFolder = new File(System.getProperty("user.dir") + "/src/dataFiles/Locations");
+        if (!locationFolder.exists()) {
+            System.err.println("Locations 폴더 없음!");
+            System.exit(1);
+        }
+
+        File[] locationFiles = locationFolder.listFiles();
+        if (locationFiles == null || locationFiles.length == 0) {
+            System.err.println("Locations 폴더에 파일 없음!");
+            System.exit(1);
+        }
+        System.out.println("flag3");
+        for (File locationFile : locationFiles) {
+            try {
+                String fileName = locationFile.getName();
+                // Remove the .txt extension
+                String locationname = fileName.substring(0, fileName.lastIndexOf(".txt"));
+
+                BufferedReader reader = new BufferedReader(new FileReader(locationFile));
+                String line;
+                Location loc = null;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split("/");
+                    if (parts.length == 2) {
+                        int bookstoragelimit = Integer.parseInt(parts[0].trim());
+                        int currentbooknum = Integer.parseInt(parts[1].trim());
+                        loc = new Location(locationname,bookstoragelimit, currentbooknum);
+                        locationList.add(loc);
+                    } else if (parts.length == 5) {
+                        String title = parts[0].trim();
+                        String author = parts[1].trim();
+                        String addedDate = parts[2].trim();
+                        int index = Integer.parseInt(parts[3].trim());
+                        String location = parts[4].trim();
+                        BookVO book = new BookVO(title, author, addedDate, index, location);
+                        assert loc != null;
+                        loc.addBookList(book);
+                    }else {
+                        System.err.println("잘못된 형식의 데이터입니다: " + locationFile.getName() + "\n" + line);
+                        System.exit(1);
+                    }
+                }
+                reader.close();
+            } catch (IOException e) {
+                System.err.println("파일 읽기 오류: " + e.getMessage());
+                System.exit(1);
+            }
+        }
+
+        return locationList;
+    }
+
+
+
+    public void writeLocationFiles(ArrayList<Location> locationList) {
+        String locationDirPath = System.getProperty("user.dir") + "/src/dataFiles/Locations/";
+
+        File locationDir = new File(locationDirPath);
+        if (!locationDir.exists()) {
+            locationDir.mkdirs();
+        } else {
+            // 디렉토리가 존재한다면 디렉토리 내 모든 파일 삭제
+            File[] files = locationDir.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (!file.delete()) {
+                        System.err.println("파일 삭제 오류: " + file.getPath());
+                        System.exit(1);
+                    }
+                }
+            }
+        }
+
+        for (Location location : locationList) {
+            String locationFilePath = locationDirPath + location.getLocationName() + ".txt";
+            File locationFile = new File(locationFilePath);
+
+            // 새로운 파일 작성
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(locationFile))) {
+                writer.write(location.getBookStorageLimit() + "/" + location.getCurrentBookNum());
+                writer.newLine();
+
+                ArrayList<BookVO> bookList = location.getBookList();
+                if (bookList != null) {
+                    for (BookVO book : bookList) {
+                        writer.write(book.getTitle()+"/"+book.getAuthor()+"/"+book.getAddedDate()+"/"+book.getIndex()+"/"+book.getLocation());
+                        writer.newLine();
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("파일 쓰기 오류: " + e.getMessage());
+                System.exit(1);
             }
         }
     }
