@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="penalty 관련 DataFile 관리 구현">
-      <change afterPath="$PROJECT_DIR$/src/Location.java" afterDir="false" />
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="BookDao 불필요 코드 정리 및 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessForTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessForTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/user/202411111.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-221dcadf" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -134,6 +135,7 @@
       <workItem from="1717586731253" duration="4029000" />
       <workItem from="1717590775014" duration="1211000" />
       <workItem from="1717592000110" duration="141000" />
+      <workItem from="1717928711147" duration="419000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />

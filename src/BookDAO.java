@@ -233,7 +233,7 @@ public class BookDAO {
         userFilePath += "/src/dataFiles/user/" + studentNum + ".txt";
         File userFile = new File(userFilePath);
         if (!userFile.exists()) {
-            System.err.println(studentNum + " 학번의 사용자 정보가 없습니다.");
+//            System.err.println(studentNum + " 학번의 사용자 정보가 없습니다.");
             return null;
         }
 
@@ -307,7 +307,10 @@ public class BookDAO {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(userFile));
-            writer.write(user.getStudentNum() + "/" + user.getIsPenalty() + "/" + user.getPenaltyDate());
+            if(user.getIsPenalty() == 0)
+                writer.write(user.getStudentNum() + "/" + user.getIsPenalty());
+            else
+                writer.write(user.getStudentNum() + "/" + user.getIsPenalty() + "/" + user.getPenaltyDate());
             writer.newLine();
             ArrayList<BookVO> currentBooks = user.getCurrentBorrowedBooks();
             if (currentBooks != null) {
@@ -467,8 +470,6 @@ public class BookDAO {
 
         return locationList;
     }
-
-
 
     public void writeLocationFiles(ArrayList<Location> locationList) {
         String locationDirPath = System.getProperty("user.dir") + "/src/dataFiles/Locations/";
