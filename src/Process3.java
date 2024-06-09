@@ -5,9 +5,7 @@
 //ArrayList<BookVO>를 통해서 각 도서에 접근하고, 도서 정보를 수정 할 수 있다.
 //각 Process는 특정 작업을 마치면, BookDAO의 writeDataToFiles(ArrayList<BookVO> bookList) 메소드를 호출하여, 변경된 데이터를 txt파일에 기록한다.
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Process3 {     //도서 관리 기능
     Scanner scanner;
@@ -17,6 +15,7 @@ public class Process3 {     //도서 관리 기능
     private BookDAO bookDAO = new BookDAO();
     private ArrayList<BookVO> books;
     private String process_input;
+    private ArrayList<Location> locationlist;
 
     public Process3(String todayDate) {
         this.todayDate = todayDate;
@@ -91,10 +90,13 @@ public class Process3 {     //도서 관리 기능
 
     private void changeLocation(BookVO book) {
         System.out.println("현재 위치 : " + book.getLocation());
-        System.out.println("1) 어린이 도서실");
-        System.out.println("2) 제1문헌실");
-        System.out.println("3) 제2문헌실");
-        System.out.println("4) 베스트셀러실");
+        locationlist = bookDAO.getLocationInfoList();
+        int index = 1;
+        Map<Integer, String> tmpLocation = new HashMap<Integer, String>();
+        for (Location location : locationlist) {
+            tmpLocation.put(index, location.getLocationName());
+            System.out.println((index++) + ") " + location.getLocationName());
+        }
         System.out.println("변경할 위치를 입력하세요.");
         int menu;
         while (true) {
@@ -104,31 +106,15 @@ public class Process3 {     //도서 관리 기능
 
             try {
                 process_input = scanner.nextLine();
-                if (isValid_MenuInput(process_input, 4)) {
+                if (isValid_MenuInput(process_input, locationlist.size())) {
                     menu = Integer.parseInt(process_input);
-
-                    if (menu == 1) {
-                        book.setLocation("어린이 도서실");
-                        System.out.println("위치가 성공적으로 변경되었습니다.");
-                        return;
-                    }
-                    else if (menu == 2) {
-                        book.setLocation("제1문헌실");
-                        System.out.println("위치가 성공적으로 변경되었습니다.");
-                        return;
-                    }
-                    else if (menu == 3) {
-                        book.setLocation("제2문헌실");
-                        System.out.println("위치가 성공적으로 변경되었습니다.");
-                        return;
-                    }
-                    else if (menu == 4) {
-                        book.setLocation("베스트셀러실");
-                        System.out.println("위치가 성공적으로 변경되었습니다.");
-                        return;
-                    }
-                    else {
-                        continue;
+                    for (Integer choose : tmpLocation.keySet()) {
+                        String location = tmpLocation.get(choose);
+                        if(menu == choose) {
+                            book.setLocation(location);
+                            System.out.println("위치가 성공적으로 변경되었습니다.");
+                            return;
+                        }
                     }
                 } else {
                     continue;
@@ -314,26 +300,25 @@ public class Process3 {     //도서 관리 기능
         return idx;
     }
 
-    private boolean isValid_MenuInput(String e, int n) {
-        if (e.length() != 1) {
-            e = e.trim();
-            int analysis = Integer.parseInt(e);
-            if (e.length() != 1) {
-                return false;
-            }
-            else {
-                if (analysis < 1 || analysis > n) {
-                    return false;
-                }
-                else
-                    this.process_input = Integer.toString(analysis);
-                return true;
-            }
-        }
-        e = e.trim();
+    private boolean isValid_MenuInput(String input, int n) {
+        String e = input.trim();
+        if(!isValidToInteger(e)) return false;
         int analysis = Integer.parseInt(e);
         return analysis >= 1 && analysis <= n;
     }
+
+    private boolean isValidToInteger(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private boolean isValid_ProcessInput(String e) {
         return !e.trim().isEmpty();
     }

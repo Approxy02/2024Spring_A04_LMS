@@ -6,6 +6,8 @@
 //각 Process는 특정 작업을 마치면, BookDAO의 writeDataToFiles(ArrayList<BookVO> bookList) 메소드를 호출하여, 변경된 데이터를 txt파일에 기록한다.
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Process1 {    //도서 추가 기능
@@ -14,6 +16,7 @@ public class Process1 {    //도서 추가 기능
     private ArrayList<BookVO> booklist;
     private BookDAO bookDAO = new BookDAO();
     private String process_input;
+    private ArrayList<Location> locationlist;
 
     public Process1(String todayDate) {
         this.todayDate = todayDate;
@@ -93,11 +96,14 @@ public class Process1 {    //도서 추가 기능
     }
 
     private String getLocation() {
+        locationlist = bookDAO.getLocationInfoList();
+        int index = 1;
+        Map<Integer, String> tmpLocation = new HashMap<Integer, String>();
         System.out.println("현재 자료실 정보");
-        System.out.println("1) 어린이 도서실");
-        System.out.println("2) 제1문헌실");
-        System.out.println("3) 제2문헌실");
-        System.out.println("4) 베스트셀러실");
+        for (Location location : locationlist) {
+            tmpLocation.put(index, location.getLocationName());
+            System.out.println((index++) + ") " + location.getLocationName());
+        }
         int menu;
         while (true) {
             System.out.println("------------------------------------------------------------");
@@ -106,19 +112,14 @@ public class Process1 {    //도서 추가 기능
 
             try {
                 process_input = scanner.nextLine();
-                if (isValid_MenuInput(process_input)) {
+                if (isValid_MenuInput(process_input, locationlist.size())) {
                     menu = Integer.parseInt(process_input);
 
-                    if (menu == 1)
-                        return "어린이 자료실";
-                    else if (menu == 2)
-                        return "제1문헌실";
-                    else if (menu == 3)
-                        return "제2문헌실";
-                    else if (menu == 4)
-                        return "베스트셀러실";
-                    else {
-                        continue;
+                    for (Integer choose : tmpLocation.keySet()) {
+                        String location = tmpLocation.get(choose);
+                        if(menu == choose) {
+                            return location;
+                        }
                     }
                 } else {
                     continue;
@@ -142,21 +143,23 @@ public class Process1 {    //도서 추가 기능
         idx = max + 1;
         return idx;
     }
-    private boolean isValid_MenuInput(String e) {
-        if (e.length() != 1) {
-            e = e.trim();
-            if (e.length() != 1)
-                return false;
-            else {
-                int analysis = Integer.parseInt(e);
-                if (analysis < 1 || analysis > 4)
-                    return false;
-                else
-                    this.process_input = Integer.toString(analysis);
-                return true;
-            }
-        }
+
+    private boolean isValid_MenuInput(String input, int n) {
+        String e = input.trim();
+        if(!isValidToInteger(e)) return false;
         int analysis = Integer.parseInt(e);
-        return analysis >= 1 && analysis <= 4;
+        return analysis >= 1 && analysis <= n;
+    }
+
+    private boolean isValidToInteger(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
