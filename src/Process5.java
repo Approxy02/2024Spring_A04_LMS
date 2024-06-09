@@ -40,6 +40,7 @@ public class Process5 {
                         updateLocation();
                     }
                     else if (menu == 4) {
+                        System.out.println("------------------------------------------------------------");
                         return;
                     } else {
                         System.out.println("잘못 입력했습니다. 범위(1~4) 안에서 다시 선택해주세요");
