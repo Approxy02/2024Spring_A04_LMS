@@ -6,6 +6,8 @@
 //각 Process는 특정 작업을 마치면, BookDAO의 writeDataToFiles(ArrayList<BookVO> bookList) 메소드를 호출하여, 변경된 데이터를 txt파일에 기록한다.
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Process4 {
@@ -168,7 +170,10 @@ public class Process4 {
             System.out.println("--------------------------------------------------------------------------");
             System.out.print("“학번”을 입력하세요 > ");
             input = scanner.nextLine();
-            if(regexForUserInfo(input)){    //학번 검증
+            if (regexForUserInfo(input)) {    //학번 검증
+                if(!checkUserForBorrrow(Integer.parseInt(input))){   //연체나 최대권수면 종료
+                    return;
+                }
                 processForBorrow(Integer.parseInt(input), selectedBook);
                 System.out.println("대여가 완료되었습니다.");
                 System.out.println(todayDate);
@@ -176,6 +181,57 @@ public class Process4 {
             }
             System.out.println("올바른 형식의 학번을 입력해주세요(숫자 9자리)");
         }
+    }
+
+    private boolean checkUserForBorrrow(int sno){
+        String stringedSno = String.valueOf(sno);
+        User user = bookDAO.getUserInfo(stringedSno);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        try {
+            LocalDate today = LocalDate.parse(todayDate, formatter);
+
+            if(Objects.isNull(user)){
+                user = new User(stringedSno, 0, null);
+                bookDAO.writeUserToFile(user);
+                return true;
+            }
+
+            //연체되었는지 검사
+            if(user.getIsPenalty() == 0){
+                for(BookVO book : user.getCurrentBorrowedBooks()){  //연체 도서가 존재하는지
+                    String dueFormat = book.getCurrentRecord().getEndDate();  //2020-01-01
+                    String[] dueFormatList = dueFormat.split(" ");
+                    LocalDate due = LocalDate.of(Integer.parseInt(dueFormatList[0]), Integer.parseInt(dueFormatList[1]), Integer.parseInt(dueFormatList[2]));
+//                    System.out.println(due);
+
+                    if(due.isBefore(today)) {
+                        System.out.println("연체 도서가 존재합니다.");
+                        System.out.println("연체 중인 도서 : " + book.getTitle());
+                        return false;
+                    }
+                }
+                if(!user.getPenaltyDate().equals("null")){
+                    System.out.println(user.getPenaltyDate() + " 까지 연체 상태입니다. (금일 : " + todayDate + " )");    //연체 도서가 없어도 연체 상태인지
+                    return false;
+                }
+            }
+
+            if(user.getCurrentBorrowedBooks().size() == 3){
+                System.out.println("이미 최대 대여 권수를 대여 중입니다. (최대 대여 권수 : 3권)");
+                System.out.println("대여 중인 도서");
+                for(BookVO book : user.getCurrentBorrowedBooks()){
+                    System.out.println(book.getTitle());
+                }
+                System.out.println("도서 반납 후 대여해주세요.");
+                return false;
+            }
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+//        LocalDateTime today = LocalDateTime.parse(todayDate, formatter);
+        return true;
     }
 
     private void returnBookPrompt(){
@@ -282,12 +338,20 @@ public class Process4 {
 //        System.out.println(startDate);
 //===============================================ForTesting===========================
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+
         LocalDate endLocalDate = startDate.plusDays(7);
-        String endDate = endLocalDate.getYear() + " " +  endLocalDate.getMonthValue() + " " + endLocalDate.getDayOfMonth();
+        String endDate = endLocalDate.format(formatter);
         BookRecord record = new BookRecord(todayDate, endDate, new Integer(sno).toString());
         //--------------------------------------------------------------------------------
 
         selectedBook.setCurrentRecord(record);
+
+        User user = bookDAO.getUserInfo(String.valueOf(sno));
+//        System.out.println(user.getStudentNum());
+        user.addCurrentBorrowedBook(selectedBook);
+
+        bookDAO.writeUserToFile(user);
     }
 
     private boolean regexForUserInfo(String input){
