@@ -294,8 +294,6 @@ public class Process4 {
                 System.out.println("올바른 형식으로 입력해주세요(1 ~ " + matchBooks.size() + " )");
             } else{  //맞는 입력
                 processForReturn(matchBooks.get(inputNum - 1));
-                System.out.println("반납이 완료되었습니다.");
-                System.out.println(todayDate);
                 break;
             }
         }
@@ -303,6 +301,40 @@ public class Process4 {
 
     private void processForReturn(BookVO selected) {
         BookRecord curRecord = selected.getCurrentRecord();
+        String num = curRecord.getStudentNum();
+        User user = bookDAO.getUserInfo(num);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        LocalDate today = LocalDate.parse(todayDate, formatter);
+        LocalDate end = LocalDate.parse(curRecord.getEndDate(), formatter);
+
+        System.out.println("반납이 완료되었습니다.");
+        System.out.println(todayDate);
+
+        if(checkOverdue(curRecord.getEndDate())){     //연체됐을 때
+            int days = today.compareTo(end);       //연체 일수
+            LocalDate penaltydate = today.plusDays(days);
+            String penalty = penaltydate.format(formatter);
+            user.setPenaltyDate(penalty);
+            user.setIsPenalty(1);
+            System.out.println("반납 도서의 연체로 인해 도서 대여가 제한됩니다.");
+            System.out.println("* "+ penalty + " 까지 도서 대여가 제한됩니다.");
+        }
+
+        //현재 대여중인 책에서 제거
+        ArrayList<BookVO> curBooks = user.getCurrentBorrowedBooks();
+        for(int i = 0; i < curBooks.size(); i++){
+            BookVO book = curBooks.get(i);
+            if(book.getTitle().equals(selected.getTitle())
+            && book.getAuthor().equals(selected.getAuthor())
+            && book.getIndex() == book.getIndex()){
+                curBooks.remove(book);
+            }
+        }
+        user.setCurrentBorrowedBooks(curBooks);
+
+        //대여했던 책에 추가
+        user.addPreviousBorrowedBook(selected);
+
         selected.setCurrentRecord(null);    //curRecord null로 하여 반납처리
 
         curRecord.setEndDate(todayDate);
@@ -311,7 +343,21 @@ public class Process4 {
             selected.setBookRecords(new ArrayList<>());
         }
         selected.getBookRecords().add(curRecord);   //대출 기록 반납일자를 오늘로 하여 기록 추가
+
         bookDAO.writeDataToFiles(bookList, todayDate);
+        bookDAO.writeUserToFile(user);
+    }
+
+    private boolean checkOverdue(String endDate){       //연체 확인
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        LocalDate today = LocalDate.parse(todayDate, formatter);
+        LocalDate end = LocalDate.parse(endDate, formatter);
+        if(today.isAfter(end)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     //2024 02 01
