@@ -8,6 +8,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Process4 {
@@ -306,14 +307,20 @@ public class Process4 {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
         LocalDate today = LocalDate.parse(todayDate, formatter);
         LocalDate end = LocalDate.parse(curRecord.getEndDate(), formatter);
+        LocalDate penaltyDate;
 
         System.out.println("반납이 완료되었습니다.");
         System.out.println(todayDate);
 
-        if(checkOverdue(curRecord.getEndDate())){     //연체됐을 때
-            int days = today.compareTo(end);       //연체 일수
-            LocalDate penaltydate = today.plusDays(days);
-            String penalty = penaltydate.format(formatter);
+        if(checkOverdue(curRecord.getEndDate())){     //책이 연체됐을 때
+            long days = end.until(today, ChronoUnit.DAYS);    //연체 일수
+            if(user.getIsPenalty() == 1){       // User가 이미 연체면 원래 penaltydate에서 + days
+                LocalDate prevPenaltyDate = LocalDate.parse(user.getPenaltyDate(), formatter);
+                penaltyDate = prevPenaltyDate.plusDays(days);
+            }else {                             // 연체 상태가 아니면
+                penaltyDate = today.plusDays(days);
+            }
+            String penalty = penaltyDate.format(formatter);
             user.setPenaltyDate(penalty);
             user.setIsPenalty(1);
             System.out.println("반납 도서의 연체로 인해 도서 대여가 제한됩니다.");
