@@ -7,11 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="BookDao 불필요 코드 정리 및 수정">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="BookDao 오류 문구 삭제">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/user/202422222.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/운영체제(진현욱_2).txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFiles/user/202411111.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/books/전공기초프로젝트(차리서_1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/books/전공기초프로젝트(차리서_1).txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +136,7 @@
       <workItem from="1717586731253" duration="4029000" />
       <workItem from="1717590775014" duration="1211000" />
       <workItem from="1717592000110" duration="141000" />
-      <workItem from="1717928711147" duration="419000" />
+      <workItem from="1717928711147" duration="1177000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -209,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716884302978</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="BookDao 오류 문구 삭제">
+      <option name="closed" value="true" />
+      <created>1717929224101</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717929224101</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +246,8 @@
     <MESSAGE value="최근접속일자 구현" />
     <MESSAGE value="penalty 구현을 위한 User 생성" />
     <MESSAGE value="penalty 관련 DataFile 관리 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="penalty 관련 DataFile 관리 구현" />
+    <MESSAGE value="BookDao 오류 문구 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="BookDao 오류 문구 삭제" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

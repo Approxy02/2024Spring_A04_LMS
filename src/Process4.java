@@ -332,8 +332,10 @@ public class Process4 {
         }
         user.setCurrentBorrowedBooks(curBooks);
 
+        BookVO tmp_book = new BookVO(selected.getTitle(), selected.getAuthor(), selected.getAddedDate(), selected.getIndex(), selected.getLocation(), selected.getCurrentRecord());
+
         //대여했던 책에 추가
-        user.addPreviousBorrowedBook(selected);
+        user.addPreviousBorrowedBook(tmp_book);
 
         selected.setCurrentRecord(null);    //curRecord null로 하여 반납처리
 
