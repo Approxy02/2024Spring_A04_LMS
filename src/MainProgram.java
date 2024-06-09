@@ -8,6 +8,7 @@ public class MainProgram {
     private Process2 process2;
     private Process3 process3;
     private Process4 process4;
+    private Process5 process5;
     private ProcessForTest processForTest; //테스트용
     private final String lastDate; //최근 접속 일자
     private String todayDate; //프로그램 처음 시작시 입력받는 오늘 날짜
@@ -30,7 +31,8 @@ public class MainProgram {
             System.out.println("2) Search Books (도서 검색)");
             System.out.println("3) Manage Books (도서 관리)");
             System.out.println("4) Borrow Books (도서 대여)");
-            System.out.println("5) Quit (종료)");
+            System.out.println("5) Manage Book Location(도서 위치 관리)");
+            System.out.println("6) Quit (종료)");
             System.out.println("------------------------------------------------------------");
             System.out.print("> A04 LMS : menu > ");
             Scanner sc = new Scanner(System.in);
@@ -38,7 +40,7 @@ public class MainProgram {
             try {
                 process_input = sc.nextLine().trim();
 //                System.out.println(process_input);
-                if (Integer.parseInt(process_input) != 5)
+                if (Integer.parseInt(process_input) != 6)
                     System.out.println("------------------------------------------------------------");
                 if (isValid_MenuInput(process_input)) {
                     int menu = Integer.parseInt(process_input);
@@ -50,20 +52,22 @@ public class MainProgram {
                         process3 = new Process3(todayDate);
                     else if (menu == 4)
                         process4 = new Process4(todayDate);
-                    else if (menu == 5) {
+                    else if (menu == 5)
+                        process5 = new Process5();
+                    else if (menu == 6) {
                         System.out.println("> A04 Library Management System을 종료합니다");
                         break;
                     } else {
-                        System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
+                        System.out.println("잘못 입력했습니다. 범위(1~6) 안에서 다시 선택해주세요");
                         System.out.println("------------------------------------------------------------");
                     }
                 } else {
-                    System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
+                    System.out.println("잘못 입력했습니다. 범위(1~6) 안에서 다시 선택해주세요");
                     System.out.println("------------------------------------------------------------");
                 }
             } catch (Exception e) {
 //                System.out.println(e);
-                System.out.println("잘못 입력했습니다. 범위(1~5) 안에서 다시 선택해주세요");
+                System.out.println("잘못 입력했습니다. 범위(1~6) 안에서 다시 선택해주세요");
                 System.out.println("------------------------------------------------------------");
 
             }
@@ -226,7 +230,7 @@ public class MainProgram {
             }
         }
         int analysis = Integer.parseInt(e);
-        return analysis >= 1 && analysis <= 5;
+        return analysis >= 1 && analysis <= 6;
     }
 
 }
