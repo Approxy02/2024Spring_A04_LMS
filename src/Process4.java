@@ -45,7 +45,7 @@ public class Process4 {
                     returnBookPrompt();
                     break;
                 case 3:
-                    printRecord();
+                    printRecordPrompt();
                     break;
                 case 4:
                     goPrevious = false; //while문 loop 조건 false로 변경
@@ -433,41 +433,66 @@ public class Process4 {
         }
     }
 
-    private void printRecord() {
-//        BookDAO bookDAO = new BookDAO(); // 임시 bookDAO - 공동으로 사용하는 bookDAO가 있으면 그것을 가져와야 함 => class bookDAO로 변경
-        String input;
-        ArrayList<BookVO> Books = bookDAO.getDataFromFiles();
-        if (Books.isEmpty()) {
-            System.out.println("검색 결과가 존재하지 않습니다.");
+    private void printRecordPrompt(){
+        String input = "";
+
+        System.out.println("--------------------------------------------------------------------------");
+        while(true){
+            System.out.print("“학번”을 입력하세요 > ");
+            input = scanner.nextLine();
+            if (regexForUserInfo(input)) {    //학번 검증
+                printRecord(Integer.parseInt(input));
+                return;
+            }
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println("올바른 형식의 학번을 입력해주세요(숫자 9자리)");
+        }
+    }
+
+    private void printRecord(int sno) {
+        User user = bookDAO.getUserInfo(Integer.toString(sno));
+
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("> Rental History");
+        if(user == null) {
+            System.out.println("대여 중인 책이 없습니다.\n대여한 기록이 없습니다.");
+            System.out.println("--------------------------------------------------------------------------");
         } else {
-            int bookNum = 1;
-            System.out.println("  제목/ 저자 / 등록날짜 / 인덱스 / 위치 / 대여기간");
-            for (BookVO book : Books) {
-                if(book.getCurrentRecord() == null) {
-                    System.out.println((bookNum++) + ")" + book.toBookFileString()  + "/대여가능");
-                }else{
-                    System.out.println((bookNum++) + ")" + book.toBookFileStringWithoutSno());
-                }
-                if(book.getBookRecords() == null) {
-                    System.out.println("이전 대여 기록 없음");
-                }
-                else {
-                    System.out.println("이전 대여 기록");
-                    for (BookRecord records : book.getBookRecords()) {
-                        System.out.println(records.getStartDate() + " ~ " + records.getEndDate());
-                    }
+            if(user.getIsPenalty() == 1) { // 연체 상태 확인
+                String penalty = user.getPenaltyDate();
+                System.out.println("* "+ penalty + " 까지 도서 대여가 제한됩니다.");
+                System.out.println();
+            }
+            ArrayList<BookVO> currentBorrowedBooks = user.getCurrentBorrowedBooks();
+            ArrayList<BookVO> previousBorrowedBooks = user.getPreviousBorrowedBooks();
+            // 대여 중인 책과 대여 기록 둘 다 비어있을 경우
+            if(currentBorrowedBooks.isEmpty() && previousBorrowedBooks.isEmpty()) {
+                System.out.println("대여 중인 책이 없습니다.\n대여한 기록이 없습니다.");
+                System.out.println("--------------------------------------------------------------------------");
+                return;
+            }
+
+            if(currentBorrowedBooks.isEmpty()) {
+                System.out.println("대여 중인 책이 없습니다.");
+            } else {
+                System.out.println("대여 중인 책의 목록");
+                int bookNum = 1;
+                for (BookVO book : currentBorrowedBooks) {
+                    System.out.println((bookNum++) + ") " + book.toBookFileStringWithoutSno());
                 }
             }
-        }
-        while(true){
-        System.out.println("‘q’를 입력하여 뒤로가기");
-        System.out.println("------------------------------------------------------------");
-        System.out.print("> A04 LMS: borrrow books > ");
-            input = scanner.nextLine();
-            input = input.replace(" ", "");
-            if(input.equals("q"))
-                break;
-            System.out.println("q 외에 다른 입력은 허용되지 않습니다.");
+            System.out.println();
+
+            if(previousBorrowedBooks.isEmpty()) {
+                System.out.println("대여한 기록이 없습니다.");
+            } else {
+                System.out.println("대여 기록");
+                int bookNum = 1;
+                for (BookVO book : previousBorrowedBooks) {
+                    System.out.println((bookNum++) + ") " + book.toBookFileStringWithoutSno());
+                }
+            }
+            System.out.println("--------------------------------------------------------------------------");
         }
     }
 }
