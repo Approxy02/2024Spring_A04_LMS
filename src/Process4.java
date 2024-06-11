@@ -177,7 +177,7 @@ public class Process4 {
                 }
                 processForBorrow(Integer.parseInt(input), selectedBook);
                 System.out.println("대여가 완료되었습니다.");
-                System.out.println(todayDate);
+//                System.out.println(todayDate);
                 break;
             }
             System.out.println("올바른 형식의 학번을 입력해주세요(숫자 9자리)");
@@ -197,23 +197,31 @@ public class Process4 {
                 return true;
             }
 
+            if(user.getPenaltyDate() != null) {
+                String slicedPenaltyDate[] = user.getPenaltyDate().split(" ");
+                LocalDate convertedPenaltyDate = LocalDate.of(Integer.parseInt(slicedPenaltyDate[0]), Integer.parseInt(slicedPenaltyDate[1]), Integer.parseInt(slicedPenaltyDate[2]));
+                if (today.isBefore(convertedPenaltyDate)) {
+                    user.setIsPenalty(1);
+                    System.out.println(user.getPenaltyDate() + " 까지 연체 상태입니다. (금일 : " + todayDate + " )");    //연체 도서가 없어도 연체 상태인지
+                    return false;
+                } else {
+                    user.setIsPenalty(0);   //today가 연체기간을 지났으면 연체상태 해제해주기
+                }
+            }
+
             //연체되었는지 검사
             if(user.getIsPenalty() == 0){
-                for(BookVO book : user.getCurrentBorrowedBooks()){  //연체 도서가 존재하는지
+                for(BookVO book : user.getCurrentBorrowedBooks()) {  //연체 도서가 존재하는지
                     String dueFormat = book.getCurrentRecord().getEndDate();  //2020-01-01
                     String[] dueFormatList = dueFormat.split(" ");
                     LocalDate due = LocalDate.of(Integer.parseInt(dueFormatList[0]), Integer.parseInt(dueFormatList[1]), Integer.parseInt(dueFormatList[2]));
 //                    System.out.println(due);
 
-                    if(due.isBefore(today)) {
+                    if (due.isBefore(today)) {
                         System.out.println("연체 도서가 존재합니다.");
                         System.out.println("연체 중인 도서 : " + book.getTitle());
                         return false;
                     }
-                }
-                if(!user.getPenaltyDate().equals("null")){
-                    System.out.println(user.getPenaltyDate() + " 까지 연체 상태입니다. (금일 : " + todayDate + " )");    //연체 도서가 없어도 연체 상태인지
-                    return false;
                 }
             }
 
