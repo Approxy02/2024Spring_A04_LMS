@@ -22,6 +22,7 @@ public class Process3 {     //도서 관리 기능
         booklist = bookDAO.getDataFromFiles();
         manageBook();
         bookDAO.writeDataToFiles(booklist, todayDate);
+        bookDAO.writeLocationFiles(locationlist);
     }
 
     private void manageBook() {
@@ -33,6 +34,7 @@ public class Process3 {     //도서 관리 기능
         searchByTitle();
         book = chooseBook();
         manageMenu(book);
+
     }
 
     private void manageMenu(BookVO book) {     //도서 선택 후 메뉴
@@ -92,7 +94,7 @@ public class Process3 {     //도서 관리 기능
         System.out.println("현재 위치 : " + book.getLocation());
         locationlist = bookDAO.getLocationInfoList();
         int index = 1;
-        Map<Integer, String> tmpLocation = new HashMap<Integer, String>();
+        Map<Integer, String> tmpLocation = new HashMap<>();
         for (Location location : locationlist) {
             tmpLocation.put(index, location.getLocationName());
             System.out.println((index++) + ") " + location.getLocationName());
@@ -112,6 +114,7 @@ public class Process3 {     //도서 관리 기능
                         String location = tmpLocation.get(choose);
                         if(menu == choose) {
                             book.setLocation(location);
+                            updateLocations();
                             System.out.println("위치가 성공적으로 변경되었습니다.");
                             return;
                         }
@@ -121,6 +124,24 @@ public class Process3 {     //도서 관리 기능
                 }
             } catch (Exception e) {
                 continue;
+            }
+        }
+    }
+
+    private void updateLocations() {
+        for (Location location : locationlist) {
+            location.setBookList(new ArrayList<>());
+            location.setCurrentBookNum(0);
+        }
+
+        for (BookVO book : booklist) {
+            for (Location location : locationlist) {
+                if (location.getLocationName().equals(book.getLocation())) {
+                    if (!location.getBookList().contains(book)) {
+                        location.addBookList(book);
+                        location.setCurrentBookNum(location.getCurrentBookNum() + 1);
+                    }
+                }
             }
         }
     }
@@ -220,10 +241,10 @@ public class Process3 {     //도서 관리 기능
                         return;
                     }
                 } else {
-                    System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                    System.out.println("1잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
                 }
             } catch (Exception e) {
-                System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                System.out.println("2잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
             }
         }
     }

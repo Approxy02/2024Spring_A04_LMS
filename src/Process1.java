@@ -36,6 +36,13 @@ public class Process1 {    //도서 추가 기능
         index = getIndex(title, author);
         booklist.add(new BookVO(title, author, todayDate, index, location));
         bookDAO.writeDataToFiles(booklist, todayDate);
+        for (Location tmplocation : locationlist) {
+            if (tmplocation.getLocationName().equals(location)) {
+                tmplocation.addBookList(new BookVO(title, author, todayDate, index, location));
+                tmplocation.setCurrentBookNum(tmplocation.getCurrentBookNum()+1);
+            }
+        }
+        bookDAO.writeLocationFiles(locationlist);
         System.out.println("도서 등록이 완료되었습니다.");
         System.out.println(title + " / " + author + " / " + todayDate + " / " + index + " / " + location);
         System.out.println("------------------------------------------------------------");
@@ -118,7 +125,6 @@ public class Process1 {    //도서 추가 기능
                 process_input = scanner.nextLine();
                 if (isValid_MenuInput(process_input, locationlist.size())) {
                     menu = Integer.parseInt(process_input);
-
                     for (Integer choose : tmpLocation.keySet()) {
                         String location = tmpLocation.get(choose);
                         if(menu == choose) {
