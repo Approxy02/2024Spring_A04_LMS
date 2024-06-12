@@ -29,6 +29,7 @@ public class Process5 {
             try {
                 process_input = scanner.nextLine();
                 if (isValid_MenuInput(process_input, 4)) {
+                    process_input = process_input.trim();
                     menu = Integer.parseInt(process_input);
                     if (menu == 1) {
                         createLocation();
@@ -75,6 +76,7 @@ public class Process5 {
         Location createdLocation = new Location(LocationName, BookStorageLimit);
         locationlist.add(createdLocation);
         System.out.println("위치가 성공적으로 추가되었습니다.");
+        System.out.println("------------------------------------------------------------");
     }
 
     private void deleteLocation(){
@@ -84,10 +86,12 @@ public class Process5 {
         Location location = chooseLocation("삭제");
         if(location.getCurrentBookNum()>0){
             System.out.println("자료실에 도서가 남아 있습니다.");
+            System.out.println("------------------------------------------------------------");
             return;
         }
         locationlist.remove(location);
         System.out.println("위치가 성공적으로 삭제되었습니다.");
+        System.out.println("------------------------------------------------------------");
     }
 
     private void updateLocation(){
@@ -105,6 +109,7 @@ public class Process5 {
             try {
                 process_input = scanner.nextLine();
                 if (isValid_MenuInput(process_input, 2)) {
+                    process_input = process_input.trim();
                     menu = Integer.parseInt(process_input);
                     if (menu == 1) {
                         while(true){
@@ -114,6 +119,7 @@ public class Process5 {
                             else System.out.println("이미 존재하는 자료실 이름입니다.");
                         }
                         System.out.println("자료실 이름이 변경되었습니다.");
+                        System.out.println("------------------------------------------------------------");
                         break;
                     }
                     else if (menu == 2) {
@@ -124,6 +130,7 @@ public class Process5 {
                             else System.out.println("자료실의 현재 도서 수 이상, 100 이하인 값을 입력해주세요.");
                         }
                         System.out.println("도서 수용 한도가 변경되었습니다.");
+                        System.out.println("------------------------------------------------------------");
                         break;
                     }
                     else {
@@ -214,6 +221,7 @@ public class Process5 {
             try {
                 process_input = scanner.nextLine();
                 if (isValid_MenuInput(process_input, locationlist.size())) {
+                    process_input = process_input.trim();
                     menu = Integer.parseInt(process_input);
                     return locationlist.get(menu - 1);
                 } else {
