@@ -11,13 +11,13 @@ public class Location {
         this.LocationName = locationName;
         this.BookStorageLimit = bookStorageLimit;
         this.CurrentBookNum = 0;
-        this.BookList = null;
+        this.BookList = new ArrayList<>();
     }
     public Location(String locationName, int bookStorageLimit, int currentBookNum){
         this.LocationName = locationName;
         this.BookStorageLimit = bookStorageLimit;
         this.CurrentBookNum = currentBookNum;
-        this.BookList = null;
+        this.BookList = new ArrayList<>();
     }
 
     public String getLocationName() {
@@ -66,5 +66,6 @@ public class Location {
 
 
 }
+
 
 

@@ -496,6 +496,9 @@ public class BookDAO {
 
             // 새로운 파일 작성
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(locationFile))) {
+                int cnt = location.getBookList().size();
+
+                location.setCurrentBookNum(cnt);
                 writer.write(location.getBookStorageLimit() + "/" + location.getCurrentBookNum());
                 writer.newLine();
 
