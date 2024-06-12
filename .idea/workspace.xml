@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="Process4 반납시 user에 기한 기록되도록">
+    <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="penalty 관련 DataFile 관리 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessForTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessForTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Desktop/과제/A04_LMS&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Desktop/2024-1/전기프/A04_LMS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -93,6 +93,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-221dcadf" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -126,8 +133,14 @@
       <workItem from="1717586481748" duration="245000" />
       <workItem from="1717586731253" duration="4029000" />
       <workItem from="1717590775014" duration="1211000" />
-      <workItem from="1717592000110" duration="141000" />
-      <workItem from="1717928711147" duration="1336000" />
+      <workItem from="1717592000110" duration="742000" />
+      <workItem from="1717652986448" duration="592000" />
+      <workItem from="1717728856148" duration="663000" />
+      <workItem from="1718166809504" duration="166000" />
+      <workItem from="1718166979576" duration="1701000" />
+      <workItem from="1718168688596" duration="101000" />
+      <workItem from="1718168793582" duration="1217000" />
+      <workItem from="1718170023457" duration="105000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />
@@ -201,23 +214,7 @@
       <option name="project" value="LOCAL" />
       <updated>1716884302978</updated>
     </task>
-    <task id="LOCAL-00010" summary="BookDao 오류 문구 삭제">
-      <option name="closed" value="true" />
-      <created>1717929224101</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1717929224101</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Process4 반납시 user에 기한 기록되도록">
-      <option name="closed" value="true" />
-      <created>1717930002248</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1717930002248</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,9 +242,7 @@
     <MESSAGE value="최근접속일자 구현" />
     <MESSAGE value="penalty 구현을 위한 User 생성" />
     <MESSAGE value="penalty 관련 DataFile 관리 구현" />
-    <MESSAGE value="BookDao 오류 문구 삭제" />
-    <MESSAGE value="Process4 반납시 user에 기한 기록되도록" />
-    <option name="LAST_COMMIT_MESSAGE" value="Process4 반납시 user에 기한 기록되도록" />
+    <option name="LAST_COMMIT_MESSAGE" value="penalty 관련 DataFile 관리 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

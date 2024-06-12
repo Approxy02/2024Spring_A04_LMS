@@ -36,6 +36,39 @@ public class ProcessForTest {
 //        for(Location lo : l2){
 //            System.out.println(lo.toLocationFileString());
 //        }
+
+    //        ArrayList<Location> locationlist = new ArrayList<>();
+//
+//        Location location1 = new Location("베스트셀러실실",120);
+//        int cnt = location1.getCurrentBookNum();
+//        BookVO v1 = new BookVO("jjjjj","hkhkh","2024 04 22",1, "베스트셀러실실");
+//        BookVO v2 = new BookVO("jjjw","hkhkh","2024 04 22",1, "베스트셀러실실");
+//        BookVO v3 = new BookVO("jjjeej","hkhkh","2024 04 22",1, "베스트셀러실실");
+//        BookVO v4 = new BookVO("jjjrrr","hkhkh","2024 04 22",1, "베스트셀러실실");
+//        location1.addBookList(v1);
+////        cnt +=1;
+//        location1.addBookList(v2);
+////        cnt +=1;
+//        location1.addBookList(v3);
+////        cnt +=1;
+//        location1.addBookList(v4);
+////        cnt +=1;
+//
+//        location1.setCurrentBookNum(cnt);
+//        locationlist.add(location1);
+//        BookDAO bookDAO = new BookDAO();
+//        bookDAO.writeLocationFiles(locationlist);
+//
+//        ArrayList<Location> l2 = new ArrayList<>();
+//        l2 = bookDAO.getLocationInfoList();
+//        System.out.println("flag2");
+//
+//        for(Location lo : l2){
+//            System.out.println(lo.toLocationFileString());
+//        }
+
+
+
 //
 //    }
 
