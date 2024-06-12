@@ -145,6 +145,9 @@ public class Process3 {     //도서 관리 기능
             if(process_input.contains("\t")){
                 continue;
             }
+            if(!isValid_author(process_input.trim())) {
+                continue;
+            }
             process_input = process_input.trim();
             if(isValid_ProcessInput(process_input)){
                 int index = getIndex(book.getTitle(), process_input);
@@ -305,6 +308,12 @@ public class Process3 {     //도서 관리 기능
         if(!isValidToInteger(e)) return false;
         int analysis = Integer.parseInt(e);
         return analysis >= 1 && analysis <= n;
+    }
+
+    private boolean isValid_author(String author) {
+        // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
+        String regex = "^[a-zA-Z가-힣0-9 ]+$";
+        return author.matches(regex);
     }
 
     private boolean isValidToInteger(String str) {

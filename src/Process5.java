@@ -100,7 +100,7 @@ public class Process5 {
             System.out.print("> 위치 관리 서비스 > ");
             try {
                 process_input = scanner.nextLine();
-                if (isValid_MenuInput(process_input, 4)) {
+                if (isValid_MenuInput(process_input, 2)) {
                     menu = Integer.parseInt(process_input);
                     if (menu == 1) {
                         while(true){
@@ -161,6 +161,9 @@ public class Process5 {
             if(locationName.isEmpty()) {
                 continue;
             }
+            if(!isValid_location(locationName.trim())) {
+                continue;
+            }
             else {
                 return locationName;
             }
@@ -208,7 +211,7 @@ public class Process5 {
                 process_input = scanner.nextLine();
                 if (isValid_MenuInput(process_input, locationlist.size())) {
                     menu = Integer.parseInt(process_input);
-                    return locationlist.get(menu-1);
+                    return locationlist.get(menu - 1);
                 } else {
                     System.out.println("목록에 해당하는 위치를 선택해 주세요.");
                     printLocations(locationlist);
@@ -220,12 +223,17 @@ public class Process5 {
         }
     }
 
-
     private boolean isValid_MenuInput(String input, int n) {
         String e = input.trim();
         if(!isValidToInteger(e)) return false;
         int analysis = Integer.parseInt(e);
         return analysis >= 1 && analysis <= n;
+    }
+
+    private boolean isValid_location(String location) {
+        // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
+        String regex = "^[a-zA-Z가-힣0-9 ]+$";
+        return location.matches(regex);
     }
 
     private boolean isValidToInteger(String str) {
