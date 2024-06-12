@@ -88,6 +88,10 @@ public class Process1 {    //도서 추가 기능
                 System.out.println("------------------------------------------------------------");
                 continue;
             }
+            if(!isValid_author(author.trim())) {
+                System.out.println("------------------------------------------------------------");
+                continue;
+            }
             else {
                 System.out.println("------------------------------------------------------------");
                 return author.trim();
@@ -149,6 +153,12 @@ public class Process1 {    //도서 추가 기능
         if(!isValidToInteger(e)) return false;
         int analysis = Integer.parseInt(e);
         return analysis >= 1 && analysis <= n;
+    }
+
+    private boolean isValid_author(String author) {
+        // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
+        String regex = "^[a-zA-Z가-힣0-9 ]+$";
+        return author.matches(regex);
     }
 
     private boolean isValidToInteger(String str) {
