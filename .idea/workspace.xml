@@ -8,9 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc239603-f751-43a2-9616-5a1b8356697b" name="변경" comment="Process4 반납시 user에 기한 기록되도록">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Process5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process5.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
