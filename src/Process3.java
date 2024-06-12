@@ -241,10 +241,10 @@ public class Process3 {     //도서 관리 기능
                         return;
                     }
                 } else {
-                    System.out.println("1잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                    System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
                 }
             } catch (Exception e) {
-                System.out.println("2잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
             }
         }
     }
