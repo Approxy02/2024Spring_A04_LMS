@@ -82,6 +82,10 @@ public class Process5 {
         System.out.print("> A04 LMS: manage location > ");
         printLocations(locationlist);
         Location location = chooseLocation("삭제");
+        if(location.getCurrentBookNum()>0){
+            System.out.println("자료실에 도서가 남아 있습니다.");
+            return;
+        }
         locationlist.remove(location);
         System.out.println("위치가 성공적으로 삭제되었습니다.");
     }
@@ -214,11 +218,11 @@ public class Process5 {
                     return locationlist.get(menu - 1);
                 } else {
                     System.out.println("목록에 해당하는 위치를 선택해 주세요.");
-                    printLocations(locationlist);
+                    //printLocations(locationlist);
                 }
             } catch (Exception e) {
                 System.out.println("입력 값이 올바르지 않습니다.");
-                printLocations(locationlist);
+                //printLocations(locationlist);
             }
         }
     }
