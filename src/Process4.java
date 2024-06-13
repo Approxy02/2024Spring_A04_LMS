@@ -206,6 +206,7 @@ public class Process4 {
                     return false;
                 } else {
                     user.setIsPenalty(0);   //today가 연체기간을 지났으면 연체상태 해제해주기
+                    user.setPenaltyDate(null);
                 }
             }
 
@@ -234,6 +235,8 @@ public class Process4 {
                 System.out.println("도서 반납 후 대여해주세요.");
                 return false;
             }
+
+            bookDAO.writeUserToFile(user);
 
             return true;
         }catch (Exception e){
