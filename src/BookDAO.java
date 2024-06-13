@@ -430,7 +430,7 @@ public class BookDAO {
             System.err.println("Locations 폴더에 파일 없음!");
             System.exit(1);
         }
-        System.out.println("flag3");
+//        System.out.println("flag3");
         for (File locationFile : locationFiles) {
             try {
                 String fileName = locationFile.getName();
