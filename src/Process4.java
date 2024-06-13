@@ -221,6 +221,7 @@ public class Process4 {
                     if (due.isBefore(today)) {
                         System.out.println("연체 도서가 존재합니다.");
                         System.out.println("연체 중인 도서 : " + book.getTitle());
+                        user.setIsPenalty(1);
                         return false;
                     }
                 }
