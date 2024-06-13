@@ -232,6 +232,15 @@ public class Process3 {     //도서 관리 기능
                     menu = Integer.parseInt(process_input);
                     if(menu == 1){
                         booklist.remove(book);
+                        locationlist = bookDAO.getLocationInfoList();
+                        for (Location location : locationlist) {
+                            if (location.getLocationName().equals(book.getLocation())) {
+                                location.getBookList().remove(book);
+                                location.setCurrentBookNum(location.getCurrentBookNum() - 1);
+                                break;
+                            }
+                        }
+                        updateLocations();
                         System.out.println("도서가 성공적으로 삭제되었습니다.");
                         System.out.println("------------------------------------------------------------");
                         return;
