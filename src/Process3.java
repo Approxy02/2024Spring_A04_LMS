@@ -232,6 +232,15 @@ public class Process3 {     //도서 관리 기능
                     menu = Integer.parseInt(process_input);
                     if(menu == 1){
                         booklist.remove(book);
+                        locationlist = bookDAO.getLocationInfoList();
+                        for (Location location : locationlist) {
+                            if (location.getLocationName().equals(book.getLocation())) {
+                                location.getBookList().remove(book);
+                                location.setCurrentBookNum(location.getCurrentBookNum() - 1);
+                                break;
+                            }
+                        }
+                        updateLocations();
                         System.out.println("도서가 성공적으로 삭제되었습니다.");
                         System.out.println("------------------------------------------------------------");
                         return;
@@ -241,10 +250,11 @@ public class Process3 {     //도서 관리 기능
                         return;
                     }
                 } else {
-                    System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                    System.out.println("1잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
                 }
             } catch (Exception e) {
-                System.out.println("잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
+                System.out.println(e);
+                System.out.println("2잘못 입력했습니다. 범위(1~2) 안에서 다시 선택해주세요.");
             }
         }
     }
