@@ -8,8 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4432a140-591b-4b06-91a9-7b100053a7fe" name="변경" comment="Process4 Penalty 해제 구현">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Process3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +60,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main 병합 중",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/mac/Desktop/2024-1/전기프/A04_LMS",
     "node.js.detected.package.eslint": "true",
