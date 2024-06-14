@@ -8,8 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4432a140-591b-4b06-91a9-7b100053a7fe" name="변경" comment="Process4 Penalty 해제 구현">
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/Locations/test실.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataFiles/books/ffff(dddd_1).txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Process5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/Locations/베스트셀러실.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/Locations/베스트셀러실.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataFiles/bookList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataFiles/bookList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +143,8 @@
       <workItem from="1718168793582" duration="1217000" />
       <workItem from="1718170023457" duration="105000" />
       <workItem from="1718274640510" duration="37000" />
-      <workItem from="1718275549109" duration="54000" />
+      <workItem from="1718275549109" duration="438000" />
+      <workItem from="1718333750833" duration="581000" />
     </task>
     <task id="LOCAL-00001" summary="메인 메뉴 구현">
       <option name="closed" value="true" />

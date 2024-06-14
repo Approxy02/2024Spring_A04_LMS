@@ -80,8 +80,8 @@ public class Process5 {
     }
 
     private void deleteLocation(){
-        System.out.println("------------------------------------------------------------");
-        System.out.print("> A04 LMS: manage location > ");
+//        System.out.println("------------------------------------------------------------");
+//        System.out.print("> A04 LMS: manage location > ");
         printLocations(locationlist);
         Location location = chooseLocation("삭제");
         if(location.getCurrentBookNum()>0){
