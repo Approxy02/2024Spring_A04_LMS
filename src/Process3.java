@@ -112,11 +112,20 @@ public class Process3 {     //도서 관리 기능
                     menu = Integer.parseInt(process_input);
                     for (Integer choose : tmpLocation.keySet()) {
                         String location = tmpLocation.get(choose);
-                        if(menu == choose) {
-                            book.setLocation(location);
-                            updateLocations();
-                            System.out.println("위치가 성공적으로 변경되었습니다.");
-                            return;
+                        if (menu == choose) {
+                            for (Location loc : locationlist) {
+                                if (loc.getLocationName().equals(location)) {
+                                    if (loc.getCurrentBookNum() >= loc.getBookStorageLimit()) {
+                                        System.out.println("해당 도서 위치가 최대 보관 상태입니다.");
+                                    }
+                                    else {
+                                        book.setLocation(location);
+                                        System.out.println("위치가 성공적으로 변경되었습니다.");
+                                        updateLocations();
+                                        return;
+                                    }
+                                }
+                            }
                         }
                     }
                 } else {
