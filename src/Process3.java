@@ -166,7 +166,7 @@ public class Process3 {     //도서 관리 기능
             if(process_input.contains("\t")){
                 continue;
             }
-            if(!isValid_author(process_input.trim())) {
+            if(!isVaildStringToAuthor(process_input.trim())) {
                 continue;
             }
             process_input = process_input.trim();
@@ -340,7 +340,7 @@ public class Process3 {     //도서 관리 기능
         return analysis >= 1 && analysis <= n;
     }
 
-    private boolean isValid_author(String author) {
+    private boolean isVaildStringToAuthor(String author) {
         // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
         String regex = "^[a-zA-Z가-힣0-9 ]+$";
         return author.matches(regex);

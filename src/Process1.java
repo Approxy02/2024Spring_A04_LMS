@@ -95,7 +95,7 @@ public class Process1 {    //도서 추가 기능
                 System.out.println("------------------------------------------------------------");
                 continue;
             }
-            if(!isValid_author(author.trim())) {
+            if(!isVaildStringToAuthor(author.trim())) {
                 System.out.println("------------------------------------------------------------");
                 continue;
             }
@@ -161,7 +161,7 @@ public class Process1 {    //도서 추가 기능
         return analysis >= 1 && analysis <= n;
     }
 
-    private boolean isValid_author(String author) {
+    private boolean isVaildStringToAuthor(String author) {
         // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
         String regex = "^[a-zA-Z가-힣0-9 ]+$";
         return author.matches(regex);

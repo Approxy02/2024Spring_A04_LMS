@@ -172,7 +172,7 @@ public class Process5 {
             if(locationName.isEmpty()) {
                 continue;
             }
-            if(!isValid_location(locationName.trim())) {
+            if(!isVaildStringToLocation(locationName.trim())) {
                 continue;
             }
             else {
@@ -242,7 +242,7 @@ public class Process5 {
         return analysis >= 1 && analysis <= n;
     }
 
-    private boolean isValid_location(String location) {
+    private boolean isVaildStringToLocation(String location) {
         // 알파벳, 한글, 공백, 숫자만 허용하는 정규표현식
         String regex = "^[a-zA-Z가-힣0-9 ]+$";
         return location.matches(regex);
