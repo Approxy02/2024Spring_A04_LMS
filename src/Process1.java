@@ -30,6 +30,22 @@ public class Process1 {    //도서 추가 기능
         String location;
         int index;
 
+        locationlist = bookDAO.getLocationInfoList();
+        boolean allLocationsFull = true;
+
+        for (Location loc : locationlist) {
+            if (loc.getCurrentBookNum() < loc.getBookStorageLimit()) {
+                allLocationsFull = false;
+                break;
+            }
+        }
+
+        if (allLocationsFull) {
+            System.out.println("모든 도서 위치가 최대 보관 상태입니다.");
+            System.out.println("------------------------------------------------------------");
+            return;
+        }
+
         title = getTitle();
         author = getAuthor();
         location = getLocation();
@@ -127,8 +143,17 @@ public class Process1 {    //도서 추가 기능
                     menu = Integer.parseInt(process_input);
                     for (Integer choose : tmpLocation.keySet()) {
                         String location = tmpLocation.get(choose);
-                        if(menu == choose) {
-                            return location;
+                        if (menu == choose) {
+                            for (Location loc : locationlist) {
+                                if (loc.getLocationName().equals(location)) {
+                                    if (loc.getCurrentBookNum() >= loc.getBookStorageLimit()) {
+                                        System.out.println("해당 도서 위치가 최대 보관 상태입니다.");
+                                    }
+                                    else {
+                                        return location;
+                                    }
+                                }
+                            }
                         }
                     }
                 } else {
